@@ -1,0 +1,45 @@
+body {
+    margin: 0;
+}
+
+h1 {
+    width: fit-content;
+    margin: auto;
+}
+
+.caixa {
+    border-radius: 5px;
+}
+
+.pai {
+    width: 80%;
+    height: 400px;
+    margin: auto;
+    background-color: antiquewhite;
+    border: solid 2px black;
+
+    display: flex; /*padrão linha*/
+    flex-direction: column; /* conteudo orientado em coluna (column) - muda a orientação de como os objetos são direciondados e posicionados na tela*/
+    justify-content: space-evenly; /*justificar o conteudo no centro(center)*/
+    align-items: center;
+}
+
+.filho {
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+}
+
+.circulo1 {
+    background-color: #ff00f2;
+    align-self: flex-start;
+}
+
+.circulo2 {
+    background-color: #5500ff;
+}
+
+.circulo3 {
+    background-color: #ff0044;
+    align-self: flex-end;
+}
