@@ -1,0 +1,33 @@
+.card {
+    width: 500px;
+    height: fit-content;
+    background-color: aliceblue;
+    border: 5px solid black;
+    border-radius: 15px;
+    margin: 10px;
+}
+
+.box {
+    width: 100px;
+    height: 100px;
+    background-color: black;
+    border-radius: 50%;
+}
+
+img {
+    height: 100%;
+    width: 100%;
+}
+
+.text {
+    font-family: monospace;
+}
+
+.title {
+    font-size: 30px;
+    ;
+}
+
+.main-color {
+    color: rgb(152, 70, 219);
+}

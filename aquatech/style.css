@@ -32,3 +32,64 @@ body {
     color: #e3b062;
     align-items: center;
 }
+
+.banner {
+    padding: 40px 20px 30px 10px; /*o padding aceita apenas quatro valores; padding do top e botttom 40 px enquanto as laterais são 0*/
+    color: white;
+    height: 400px;
+    background-image: url("imagens/bg-jelly-fish-para_outras_pags.png");
+}
+
+.banner .container {
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.banner .container p {
+    font-size: 32px;
+    width: 25%;
+}
+
+.banner .container p span {
+    font-weight: bold;
+}
+
+.social {
+    background-color: white;
+    padding: 40px 0;
+}
+
+.card {
+    width: 150px;
+    text-align: center;
+}
+
+.card img {
+    width: 100%;
+}
+
+.card h4 {
+    font-size: 20px;
+    
+}
+
+.social .container {
+    justify-content: space-between;
+}
+
+.footer {
+    height: 100px;
+    background-color: rgb(8, 170, 170);
+}
+
+.footer .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.footer .container p {
+    font-style: bold;
+}
