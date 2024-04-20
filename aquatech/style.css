@@ -55,11 +55,6 @@ body {
     font-weight: bold;
 }
 
-.social {
-    background-color: white;
-    padding: 40px 0;
-}
-
 .card {
     width: 150px;
     text-align: center;
@@ -72,10 +67,6 @@ body {
 .card h4 {
     font-size: 20px;
     
-}
-
-.social .container {
-    justify-content: space-between;
 }
 
 .footer {
@@ -94,7 +85,18 @@ body {
     font-style: bold;
 }
 
-.login .container{
+.header a {
+    text-decoration: none;
+    color: #e3b062;
+    cursor: pointer;
+}
+
+.agora {
+    font-weight: 800;
+}
+
+
+.login .container {
     justify-content: center;
     background-image: url('imagens/bg-jelly-fish-para_outras_pags.png');
     background-size: cover;
@@ -138,13 +140,56 @@ body {
     border-radius: 8px;
 }
 
-.header a {
-    text-decoration: none;
-    color: #e3b062;
-    cursor: cell;
+.cadastro .container {
+    justify-content: center;
+    background-image: url('imagens/bg-jelly-fish-para_outras_pags.png');
+    background-size: cover;
+    height: 75vh;
+    align-items: center;
 }
 
-.agora {
-    font-weight: 800;
+.cardC {
+    background-color: rgb(233, 231, 231);
+    color: palevioletred;
+    display: flex;
+    flex-direction: column;
+    height: 410px;
+    width: 350px;
+    border-radius: 5px;
+    text-align: center;
+    
 }
 
+
+.formularioC button {
+    margin-top: 2px;
+    padding: 10px 20px;
+    background-color: rgb(233, 28, 96);
+    border: none;
+    color: white;
+    border-radius: 6px;
+    font-weight: bold ;
+}
+
+.campoC {
+    display: flex;
+    margin-left: 15%;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+}
+
+.campoC input {
+    width: 200px;
+    padding: 7px 15px;
+    border: 2px solid #32b9cb;
+    margin: 10px;
+    border-radius: 10px;
+    
+}
+
+ .campoC label {
+    margin-left: 4%;
+    font-weight: bold;
+    text-align: left;
+}
