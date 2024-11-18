@@ -172,6 +172,13 @@
 
 }
 
+.boxPassageirosXMeses .boxGrafico .divGraficoPass {
+    height: 32vh;
+    width: 45vw;
+    display: flex;
+    align-items: flex-end;
+}
+
 
 
 .boxGeralAlertasEPassageiros {
@@ -188,27 +195,33 @@
 .divFreqAlertas{
     background-color: #f8f8f8;
     height: 47vh;
-    width: 49vw;
+    width: 50vw;
     border-radius: 10px;
     box-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
 
 }
 
 .divFreqAlertas .divTituloESelect {
     /* background-color: pink; */
-    height: 7vh;
-    width: 45vw;
+    height: 6vh;
+    width: 48vw;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    font-size: large;
+    font-size: 17.5px;
     font-family: "montSerrat";
     font-weight: 600;
+}
+
+.divFreqAlertas .divTituloESelect span {
+    /* background-color: pink; */
+    height: 5vh;
+    width: 30vw;
 }
 
 .divFreqAlertas .divTituloESelect select{
@@ -222,16 +235,45 @@
 }
 
 .divFreqAlertas .divGrafFreqAlertas {
-    background-color: purple;
-    height: 40vh;
-    width: 46vw;
+    height: 37vh;
+    width: 49vw;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
 }
 
 .divAlertasXPassageiros {
     background-color: #f8f8f8;
     height: 47vh;
-    width: 33.7vw;
+    width: 33.3vw;
     border-radius: 10px;
     box-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
+}
+
+.divAlertasXPassageiros .divTituloAlerXPass {
+    height: 6vh;
+    width: 33vw;
+    display: flex;
+    align-items: center;
+    font-size: 17.5px;
+    font-family: "montSerrat";
+    font-weight: 600;
+}
+
+.divAlertasXPassageiros .divTituloAlerXPass {
+    height: 5vh;
+    width: 30vw;
+}
+
+.divAlertasXPassageiros .divGrafAlerXPass {
+    display: flex;
+    justify-content: center;
+    align-items: center  ;
+    height: 42vh;
+    width: 33vw;
 }

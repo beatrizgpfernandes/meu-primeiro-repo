@@ -11,7 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
-<body onload="listarTotens(), totemMaiorAlerta(), diaMaiorAlerta()">
+<body onload="listarTotens(), totemMaiorAlerta(), diaMaiorAlerta(), gerarGraficoFrequenciaAlertas(), gerarGraficoPassageirosPorMes()">
 
     <div class="conteudoPagina">
         <div class="boxLateral">
@@ -38,7 +38,7 @@
                 <div class="titulo" style="display: flex; align-items: center;">ANÁLISE MENSAL DOS ALERTAS</div>
                 <div class="selecionarTotem1">
                     <div class="boxLogo">
-                        <img src="Images/gwLogo_black.png" alt="" style="width: 22%;">
+                        <img src="Images/gwLogo_black.png" alt="" style="width: 21%; padding-bottom: 4%;">
                     </div>
                 </div>
             </div>
@@ -83,6 +83,9 @@
                             <div class="boxTituloGrafico">
                                 <span>QUANTIDADE DE PASSAGEIROS POR MÊS DO ANO</span>
                             </div>
+                            <div class="divGraficoPass">
+                                <canvas id="graficoPassageiros" width="1100" height="350"></canvas>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -95,9 +98,18 @@
                                 <option value="" selected disabled>Selecione um Totem</option>
                             </select>
                         </div>
-                        <div class="divGrafFreqAlertas"></div>
+                        <div class="divGrafFreqAlertas">
+                            <canvas id="graficoFrequenciaAlertas" width="1220" height="400"></canvas>
+                        </div>
                     </div>
-                    <div class="divAlertasXPassageiros"></div>
+                    <div class="divAlertasXPassageiros">
+                        <div class="divTituloAlerXPass">
+                            <span>RELAÇÃO ENTRE ALERTAS E PASSAGEIROS</span>
+                        </div>
+                        <div class="divGrafAlerXPass">
+                            <canvas id="graficoAlertasXPassageiros" width="520" height="390"></canvas>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -122,86 +134,6 @@
         document.getElementById('nome_perfil').textContent = 'Usuário não identificado';
     }
 
-    // function exibir() {
-    //     var selectTotem = document.getElementById("selectTotem");
-    //     var mediaCpu = document.getElementById("mediaCpu");
-    //     var mediaRam = document.getElementById("mediaRam");
-    //     var mediaDisco = document.getElementById("mediaDisco");
-    //     var totemSelecionadoMedia = selectTotem.value;
-
-    //     if (totemSelecionadoMedia == "TOTEM 1") {
-    //         mediaCpu.innerHTML = "5% - 25%";
-    //         mediaRam.innerHTML = "20% - 40%";
-    //         mediaDisco.innerHTML = "15% - 35%";
-    //     } else if (totemSelecionadoMedia == "TOTEM 2") {
-    //         mediaCpu.innerHTML = "30% - 55%";
-    //         mediaRam.innerHTML = "45% - 65%";
-    //         mediaDisco.innerHTML = "30% - 50%";
-    //     } else if (totemSelecionadoMedia == "TOTEM 3") {
-    //         mediaCpu.innerHTML = "60% - 85%";
-    //         mediaRam.innerHTML = "70% - 90%";
-    //         mediaDisco.innerHTML = "55% - 75%";
-    //     }
-    // }
-
-
-
-
-    // const ctx = document.getElementById('myChart');
-    // const myChart = new Chart(ctx, {
-    //     type: 'bar',
-    //     data: {
-    //         labels: ['06/10', '07/10', '08/10', '09/10', '10/10', '11/10', '12/10'],
-    //         datasets: [
-    //             {
-    //                 label: 'CPU',
-    //                 data: [35, 45, 30, 50, 55, 40, 60],
-    //                 backgroundColor: '#18204b',
-    //                 borderWidth: 1
-    //             },
-    //             {
-    //                 label: 'RAM',
-    //                 data: [65, 70, 55, 75, 60, 65, 80],
-    //                 backgroundColor: '#41b8d5',
-    //                 borderWidth: 1
-    //             },
-    //             {
-    //                 label: 'DISCO',
-    //                 data: [45, 50, 35, 60, 55, 40, 55],
-    //                 backgroundColor: '#8eeff1',
-    //                 borderWidth: 1
-    //             }
-    //         ]
-    //     },
-    //     options: {
-    //         scales: {
-    //             y: {
-    //                 beginAtZero: true
-    //             }
-    //         }
-    //     }
-    // });
-
-    // function atualizarGrafico() {
-    //     const totemSelecionado = document.getElementById('selectTotemGrafico').value;
-
-    //     if (totemSelecionado === "TOTEM 1") {
-    //         myChart.data.datasets[0].data = [35, 45, 30, 50, 55, 40, 60];
-    //         myChart.data.datasets[1].data = [65, 70, 55, 75, 60, 65, 80];
-    //         myChart.data.datasets[2].data = [45, 50, 35, 60, 55, 40, 55];
-    //     } else if (totemSelecionado === "TOTEM 2") {
-    //         myChart.data.datasets[0].data = [25, 30, 40, 35, 45, 55, 50];
-    //         myChart.data.datasets[1].data = [70, 75, 65, 60, 80, 85, 78];
-    //         myChart.data.datasets[2].data = [50, 55, 40, 45, 60, 58, 65];
-    //     } else if (totemSelecionado === "TOTEM 3") {
-    //         myChart.data.datasets[0].data = [40, 60, 55, 65, 70, 50, 75];
-    //         myChart.data.datasets[1].data = [85, 80, 78, 88, 90, 70, 75];
-    //         myChart.data.datasets[2].data = [55, 60, 65, 68, 70, 75, 80];
-    //     }
-
-    //     // Atualiza o gráfico para refletir os novos dados
-    //     myChart.update();
-    // }
 
 
 
@@ -281,18 +213,139 @@
 
 
     // Estrutura dos Gráficos
+    function gerarGraficoFrequenciaAlertas() {
+        // Dados fictícios para a frequência de alertas nos dias do mês
+        const diasDoMes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
+        const frequenciaAlertas = [5, 10, 7, 3, 8, 12, 4, 6, 9, 15, 14, 7, 5, 11, 8, 13, 10, 9, 12, 16, 14, 7, 9, 11, 15, 18, 13, 10, 11, 12];
+
+        // Configuração do gráfico
+        const ctx = document.getElementById('graficoFrequenciaAlertas').getContext('2d');
+        const graficoFrequenciaAlertas = new Chart(ctx, {
+            type: 'line', // Tipo de gráfico: linha
+            data: {
+                labels: diasDoMes, // Eixo X: dias do mês
+                datasets: [{
+                    label: 'Frequência de Alertas', // Rótulo do gráfico
+                    data: frequenciaAlertas, // Dados da frequência
+                    fill: false, // Não preencher a área abaixo da linha
+                    borderColor: '#18204b', // Cor da linha
+                    tension: 0.1 // Tensão da linha (curvatura)
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Dia do Mês'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Frequência de Alertas'
+                        },
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+
+
+
+
+
+    // Dados simulados
+    const passageiros = [50, 100, 150, 200, 250, 300, 350, 400, 450, 500];
+    const alertas = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50];
+
+    // Dados do gráfico de dispersão
+    const data = {
+        datasets: [{
+            label: 'Alertas vs Passageiros',
+            data: passageiros.map((p, index) => ({
+                x: p,
+                y: alertas[index]
+            })),
+            backgroundColor: '#18204b',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+        }]
+    };
+
+    // Configuração do gráfico
     const config = {
         type: 'scatter',
         data: data,
         options: {
+            responsive: true,
             scales: {
                 x: {
-                    type: 'linear',
-                    position: 'bottom'
+                    title: {
+                        display: true,
+                        text: 'Quantidade de Passageiros (milhares)'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Frequência de Alertas'
+                    }
                 }
             }
         }
     };
+
+    // Criando o gráfico no canvas
+    const ctx = document.getElementById('graficoAlertasXPassageiros').getContext('2d');
+    new Chart(ctx, config);
+
+
+
+    const meses = [
+        'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
+        'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'
+    ];
+    const passageirosMensais = [120, 150, 170, 140, 160, 180, 190, 200, 210, 220, 230, 240];
+
+    // Função para gerar o gráfico de passageiros por mês
+    function gerarGraficoPassageirosPorMes() {
+        const ctx = document.getElementById('graficoPassageiros').getContext('2d');
+        const graficoPassageiros = new Chart(ctx, {
+            type: 'line', // Tipo de gráfico: linha
+            data: {
+                labels: meses, // Eixo X: meses do ano
+                datasets: [{
+                    label: 'Quantidade de Passageiros',
+                    data: passageirosMensais, // Dados da quantidade de passageiros
+                    fill: false, // Não preencher a área abaixo da linha
+                    borderColor: '#18204b', // Cor da linha
+                    tension: 0.1, // Tensão da linha (curvatura)
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Meses do Ano'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Quantidade de Passageiros'
+                        },
+                        beginAtZero: true // Começar o eixo Y do zero
+                    }
+                }
+            }
+        });
+    }
 
 
 
