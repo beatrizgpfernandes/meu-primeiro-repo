@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Métricas Gerente - GateWatch</title>
+    <link rel="stylesheet" href="./CSS/styleDashboards.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+</head>
+
+<body>
+
+    <div class="conteudoPagina">
+        <div class="boxLateral">
+            <div class="boxIdentificacao">
+                <h1 class="fonte_perfil" id="nome_perfil"></h1>
+                <h3>ANALISTA DE DADOS</h3>
+            </div>
+            <div class="boxOpcoes">
+                <div class="box" style="background-color: #41446877;">DASHBOARD</div>
+                <a href="index.html">
+                    <div class="box">HOME</div>
+                </a>
+            </div>
+            <a href="cadastro.html">
+                <div class="boxSair">SAIR</div>
+            </a>
+        </div>
+        <div class="conteudoMetricas">
+            <div class="boxTitulo">
+                <div class="titulo">CONDIÇÃO DOS TOTENS</div>
+                <div class="selecionarTotem1">
+                    <div class="boxLogo">
+                        <img src="Images/gwLogo_black.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="boxConteudoTempoReal">
+                <div class="boxComponentesAtual">
+                    <div class="boxDiscoRam">
+                        <div class="box">
+                            <select id="selectRamTotem" onchange="atualizarGraficoRam()">
+                                <option selected disabled>Selecione um Totem</option>
+                                <option>TOTEM 1</option>
+                                <option>TOTEM 2</option>
+                                <option>TOTEM 3</option>
+                            </select>
+                            <div class="tituloComponentesAtual">RAM POR TOTEM</div>
+                            <div class="graficoComponenteAtual">
+                                <canvas id="myChartRam" width="500" height="500"></canvas>
+                            </div>
+                        </div>
+                        <div class="box">
+                            <select id="selectDiscoTotem" onchange="atualizarGraficoDisco()">
+                                <option selected disabled>Selecione um Totem</option>
+                                <option>TOTEM 1</option>
+                                <option>TOTEM 2</option>
+                                <option>TOTEM 3</option>
+                            </select>
+                            <div class="tituloComponentesAtual">DISCO POR TOTEM</div>
+                            <div class="graficoComponenteAtual">
+                                <canvas id="myChartDisco" width="500" height="500"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="boxQtdTotal">
+                        <div class="box">
+                            <div class="boxTitulo">QUANTIDADE DE TOTENS MONITORADOS</div>
+                            <div class="boxQtd">3</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="boxTempoRealAlertas">
+                    <div class="boxGeralCpu">
+                        <div class="boxGraficoCpuAtual">
+                            <div class="boxTitulo">
+                                <h2>PERCENTUAL DE CPU POR TOTEM</h2>
+                                <select id="selectCpuTotem" onchange="atualizarGraficoCpu()">
+                                    <option selected disabled>Selecione um Totem</option>
+                                    <option>TOTEM 1</option>
+                                    <option>TOTEM 2</option>
+                                    <option>TOTEM 3</option>
+                                </select>
+                            </div>
+                            <div class="boxGrafico">
+                                <canvas id="myChartCpu" width="1400" height="400"></canvas>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="boxGeralAlertas">
+                        <div class="boxAlertas">
+                            <div class="boxTitulo">ALERTAS DOS TOTENS</div>
+                            <div class="boxAlertasGeral">
+                                <div class="box">ALERTA: CPU ATINGIU 90% - TOTEM 1</div>
+                                <div class="box">ALERTA: CPU ATINGIU 80% - TOTEM 3</div>
+                                <div class="box">ALERTA: RAM ATINGIU 60% - TOTEM 1</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>
+
+<script>
+
+    const nomeUsuario = sessionStorage.getItem('NOME_USUARIO');
+
+    if (nomeUsuario) {
+        document.getElementById('nome_perfil').textContent = nomeUsuario;
+    } else {
+        document.getElementById('nome_perfil').textContent = 'Usuário não identificado';
+    }
+
+
+    const dadosTotens = {
+    "TOTEM 1": {
+        ram: [54, 46], 
+        disco: [88, 12] 
+    },
+    "TOTEM 2": {
+        ram: [70, 30], 
+        disco: [65, 35] 
+    },
+    "TOTEM 3": {
+        ram: [40, 60], 
+        disco: [50, 50] 
+    }
+};
+
+
+    const ctxRam = document.getElementById('myChartRam');
+
+    let myChartRam = new Chart(ctxRam, {
+        type: 'pie',
+        data: {
+            labels: [
+                'Uso',
+                'Disponível'
+            ],
+            datasets: [{
+                data: dadosTotens["TOTEM 1"].ram,
+                backgroundColor: [
+                    '#0e132c',
+                    '#006494'
+                ],
+            }]
+        },
+        options: {
+            responsive: true,
+            aspectRatio: 2,
+            plugins: {
+                legend: {
+                    position: 'right',
+                    labels: {
+                        font: {
+                            size: 20  
+                        }
+                    }
+                },
+                datalabels: {
+                    color: '#fff',
+                    font: {
+                        size: 17
+                    },
+                    formatter: (value, ctx) => {
+                    let total = ctx.dataset.data.reduce((acc, curr) => acc + curr, 0);
+                    let percentage = (value / total * 100).toFixed(2) + '%'; 
+                    let label = ctx.chart.data.labels[ctx.dataIndex];
+                    return percentage; 
+                    }
+                }
+            }
+        },
+        plugins: [ChartDataLabels]
+    });
+
+    const ctxDisco = document.getElementById('myChartDisco');
+
+    let myChartDisco = new Chart(ctxDisco, {
+        type: 'pie',
+        data: {
+            labels: [
+                'Uso',
+                'Disponível'
+            ],
+            datasets: [{
+                data: dadosTotens["TOTEM 1"].disco,
+                backgroundColor: [
+                    '#0e132c',
+                    '#006494'
+                ],
+            }]
+        },
+        options: {
+            responsive: true,
+            aspectRatio: 2,
+            plugins: {
+                legend: {
+                    position: 'right',
+                    labels: {
+                        font: {
+                            size: 20 
+                        }
+                    }
+                },
+                datalabels: {
+                    color: '#fff',
+                    font: {
+                        size: 17
+                    },
+                    formatter: (value, ctx) => {
+                    let total = ctx.dataset.data.reduce((acc, curr) => acc + curr, 0);
+                    let percentage = (value / total * 100).toFixed(2) + '%'; 
+                    let label = ctx.chart.data.labels[ctx.dataIndex];
+                    return percentage;
+                    }
+                }
+            }
+        },
+        plugins: [ChartDataLabels]
+    });
+
+    function atualizarGraficoRam() {
+    const totemSelecionado = document.getElementById('selectRamTotem').value;
+    let dadosRam;
+
+    if (totemSelecionado === "TOTEM 1") {
+        dadosRam = dadosTotens["TOTEM 1"].ram;
+    } else if (totemSelecionado === "TOTEM 2") {
+        dadosRam = dadosTotens["TOTEM 2"].ram;
+    } else if (totemSelecionado === "TOTEM 3") {
+        dadosRam = dadosTotens["TOTEM 3"].ram;
+    }
+
+    myChartRam.data.datasets[0].data = dadosRam;
+    myChartRam.update();
+}
+
+function atualizarGraficoDisco() {
+    const totemSelecionado = document.getElementById('selectDiscoTotem').value;
+    let dadosDisco;
+
+    if (totemSelecionado === "TOTEM 1") {
+        dadosDisco = dadosTotens["TOTEM 1"].disco;
+    } else if (totemSelecionado === "TOTEM 2") {
+        dadosDisco = dadosTotens["TOTEM 2"].disco;
+    } else if (totemSelecionado === "TOTEM 3") {
+        dadosDisco = dadosTotens["TOTEM 3"].disco;
+    }
+
+    myChartDisco.data.datasets[0].data = dadosDisco;
+    myChartDisco.update();
+}
+
+    const ctxCpu = document.getElementById('myChartCpu');
+    const myChartCpu = new Chart(ctxCpu, {
+        type: 'line',
+        data: {
+            labels: ['12:10:15', '12:10:20', '12:10:25', '12:10:30', '12:10:35', '12:10:40', '12:10:45', '12:10:50', '12:10:55', '12:11:00'],
+            datasets: [
+                {
+                    label: 'Totem 1',
+                    data: [65, 72, 68, 75, 80, 85, 78, 70, 74, 77],
+                    fill: false,
+                    borderColor: '#18204b',
+                    tension: 0.1
+                },
+                {
+                    label: 'Totem 2',
+                    data: [30, 32, 35, 40, 42, 50, 48, 45, 42, 44],
+                    borderColor: '#65a6fa',
+                    tension: 0.1
+                },
+                {
+                    label: 'Totem 3',
+                    data: [15, 18, 20, 25, 27, 28, 26, 23, 22, 20],
+                    borderColor: '#49c3fb',
+                    tension: 0.1
+                }
+            ]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    function atualizarGraficoCpu() {
+        const totemSelecionado = document.getElementById('selectCpuTotem').value;
+
+        if (totemSelecionado === "TOTEM 1") {
+            myChartCpu.data.datasets[0].data = [65, 72, 68, 75, 80, 85, 78, 70, 74, 77];
+            myChartCpu.data.datasets[1].data = [30, 32, 35, 40, 42, 50, 48, 45, 42, 44];
+            myChartCpu.data.datasets[2].data = [15, 18, 20, 25, 27, 28, 26, 23, 22, 20];
+        } else if (totemSelecionado === "TOTEM 2") {
+            myChartCpu.data.datasets[0].data = [50, 55, 52, 60, 62, 65, 60, 57, 55, 54];
+            myChartCpu.data.datasets[1].data = [35, 38, 34, 36, 39, 40, 41, 39, 37, 36];
+            myChartCpu.data.datasets[2].data = [20, 25, 23, 26, 28, 30, 28, 25, 23, 22];
+        } else if (totemSelecionado === "TOTEM 3") {
+            myChartCpu.data.datasets[0].data = [40, 45, 42, 48, 50, 52, 49, 46, 45, 43];
+            myChartCpu.data.datasets[1].data = [30, 32, 31, 29, 28, 27, 26, 25, 24, 23];
+            myChartCpu.data.datasets[2].data = [10, 12, 13, 15, 16, 17, 15, 14, 12, 11];
+        }
+
+        myChartCpu.update();
+    }
+
+
+    
+
+
+</script>

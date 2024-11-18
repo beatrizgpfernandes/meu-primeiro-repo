@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Métricas Gerente - GateWatch</title>
+    <link rel="stylesheet" href="./CSS/styleDashboards.css">
+    <link rel="stylesheet" href="./CSS/dashboardBeatriz.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body onload="listarTotens(), totemMaiorAlerta(), diaMaiorAlerta()">
+
+    <div class="conteudoPagina">
+        <div class="boxLateral">
+            <div class="boxIdentificacao">
+                <h1 class="fonte_perfil" id="nome_perfil"></h1>
+                <h3>GERENTE DE DADOS</h3>
+            </div>
+            <div class="boxOpcoes">
+                <div class="box">TENDÊNCIAS</div>
+                <a
+                    href="https://bandteccom-my.sharepoint.com/:x:/r/personal/felipe_nogueira_sptech_school/_layouts/15/doc2.aspx?sourcedoc=%7B2C447587-16DA-4CF9-A5B1-0F51B1FB95C3%7D&file=DashboardWebCrawler.xlsx&action=default&mobileredirect=true&DefaultItemOpen=1&ct=1730116379171&wdOrigin=OFFICECOM-WEB.MAIN.REC&cid=e50e6cf2-9a29-4df0-99db-651175d6dc5b&wdPreviousSessionSrc=HarmonyWeb&wdPreviousSession=8d45903a-d7da-4337-b5a8-bbb41545c8c3">
+                    <div class="box" style="background-color: #41446877;">ALERTAS</div>
+                </a>
+                <a href="cadastroTotens.html">
+                    <div class="box">TOTENS</div>
+                </a>
+            </div>
+            <a href="cadastro.html">
+                <div class="boxSair">SAIR</div>
+            </a>
+        </div>
+        <div class="conteudoMetricas">
+            <div class="boxTitulo">
+                <div class="titulo" style="display: flex; align-items: center;">ANÁLISE MENSAL DOS ALERTAS</div>
+                <div class="selecionarTotem1">
+                    <div class="boxLogo">
+                        <img src="Images/gwLogo_black.png" alt="" style="width: 22%;">
+                    </div>
+                </div>
+            </div>
+            <div class="boxConteudoMetricas" style="display: flex; justify-content: center; align-items: center;">
+                <div class="boxGeralKpiWebCrawler">
+                    <div class="boxGeralKpi">
+                        <div class="divSelect">
+                            <select id="listaMeses">
+                                <option value="" selected disabled>Selecione um Mês</option>
+                            </select>
+                        </div>
+                        <div class="divKpis">
+                            <div class="boxKpiTotem">
+                                <div class="boxMetrica">
+                                    <div class="divLinha"></div>
+                                    <div class="divMetrica">
+                                        <h1>TOTEM COM MAIS ALERTAS</h1>
+                                        <h2><span id="TotemMaisAlerta"></span></h2>
+                                        <div class="divAjuda">
+                                            <img src="Images/iconAjuda.png" alt="" style="width: 12%;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="boxKpiDia">
+                                <div class="boxMetrica">
+                                    <div class="divLinha"></div>
+                                    <div class="divMetrica">
+                                        <h1>DIA COM MAIS ALERTAS</h1>
+                                        <h2><span id="DiaMaisAlerta"></span></h2>
+                                        <div class="divAjuda">
+                                            <img src="Images/iconAjuda.png" alt="" style="width: 12%;"
+                                                onclick="detalhesMetrica()">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="boxPassageirosXMeses">
+                        <div class="boxGrafico">
+                            <div class="boxTituloGrafico">
+                                <span>QUANTIDADE DE PASSAGEIROS POR MÊS DO ANO</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="boxGeralAlertasEPassageiros">
+                    <div class="divFreqAlertas">
+                        <div class="divTituloESelect">
+                            <span>QUANTIDADE DE PASSAGEIROS POR MÊS DO ANO</span>
+                            <select id="listaTotens">
+                                <option value="" selected disabled>Selecione um Totem</option>
+                            </select>
+                        </div>
+                        <div class="divGrafFreqAlertas"></div>
+                    </div>
+                    <div class="divAlertasXPassageiros"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>
+
+<script>
+
+    const nomeUsuario = sessionStorage.getItem('NOME_USUARIO');
+    const fkCompanhia = sessionStorage.getItem('FK_COMPANHIA')
+
+
+
+    if (nomeUsuario) {
+        document.getElementById('nome_perfil').textContent = nomeUsuario;
+    } else {
+        document.getElementById('nome_perfil').textContent = 'Usuário não identificado';
+    }
+
+    // function exibir() {
+    //     var selectTotem = document.getElementById("selectTotem");
+    //     var mediaCpu = document.getElementById("mediaCpu");
+    //     var mediaRam = document.getElementById("mediaRam");
+    //     var mediaDisco = document.getElementById("mediaDisco");
+    //     var totemSelecionadoMedia = selectTotem.value;
+
+    //     if (totemSelecionadoMedia == "TOTEM 1") {
+    //         mediaCpu.innerHTML = "5% - 25%";
+    //         mediaRam.innerHTML = "20% - 40%";
+    //         mediaDisco.innerHTML = "15% - 35%";
+    //     } else if (totemSelecionadoMedia == "TOTEM 2") {
+    //         mediaCpu.innerHTML = "30% - 55%";
+    //         mediaRam.innerHTML = "45% - 65%";
+    //         mediaDisco.innerHTML = "30% - 50%";
+    //     } else if (totemSelecionadoMedia == "TOTEM 3") {
+    //         mediaCpu.innerHTML = "60% - 85%";
+    //         mediaRam.innerHTML = "70% - 90%";
+    //         mediaDisco.innerHTML = "55% - 75%";
+    //     }
+    // }
+
+
+
+
+    // const ctx = document.getElementById('myChart');
+    // const myChart = new Chart(ctx, {
+    //     type: 'bar',
+    //     data: {
+    //         labels: ['06/10', '07/10', '08/10', '09/10', '10/10', '11/10', '12/10'],
+    //         datasets: [
+    //             {
+    //                 label: 'CPU',
+    //                 data: [35, 45, 30, 50, 55, 40, 60],
+    //                 backgroundColor: '#18204b',
+    //                 borderWidth: 1
+    //             },
+    //             {
+    //                 label: 'RAM',
+    //                 data: [65, 70, 55, 75, 60, 65, 80],
+    //                 backgroundColor: '#41b8d5',
+    //                 borderWidth: 1
+    //             },
+    //             {
+    //                 label: 'DISCO',
+    //                 data: [45, 50, 35, 60, 55, 40, 55],
+    //                 backgroundColor: '#8eeff1',
+    //                 borderWidth: 1
+    //             }
+    //         ]
+    //     },
+    //     options: {
+    //         scales: {
+    //             y: {
+    //                 beginAtZero: true
+    //             }
+    //         }
+    //     }
+    // });
+
+    // function atualizarGrafico() {
+    //     const totemSelecionado = document.getElementById('selectTotemGrafico').value;
+
+    //     if (totemSelecionado === "TOTEM 1") {
+    //         myChart.data.datasets[0].data = [35, 45, 30, 50, 55, 40, 60];
+    //         myChart.data.datasets[1].data = [65, 70, 55, 75, 60, 65, 80];
+    //         myChart.data.datasets[2].data = [45, 50, 35, 60, 55, 40, 55];
+    //     } else if (totemSelecionado === "TOTEM 2") {
+    //         myChart.data.datasets[0].data = [25, 30, 40, 35, 45, 55, 50];
+    //         myChart.data.datasets[1].data = [70, 75, 65, 60, 80, 85, 78];
+    //         myChart.data.datasets[2].data = [50, 55, 40, 45, 60, 58, 65];
+    //     } else if (totemSelecionado === "TOTEM 3") {
+    //         myChart.data.datasets[0].data = [40, 60, 55, 65, 70, 50, 75];
+    //         myChart.data.datasets[1].data = [85, 80, 78, 88, 90, 70, 75];
+    //         myChart.data.datasets[2].data = [55, 60, 65, 68, 70, 75, 80];
+    //     }
+
+    //     // Atualiza o gráfico para refletir os novos dados
+    //     myChart.update();
+    // }
+
+
+
+    function totemMaiorAlerta() {
+        fetch("/totens/totemMaiorAlerta", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO listar()!")
+
+            if (resposta.ok) {
+                console.log("Função listar(): ")
+
+                resposta.json().then(function (resposta) {
+                    var dados = resposta[0];
+
+                    console.log(dados);
+                    TotemMaisAlerta.innerHTML = dados.nome;
+                })
+            }
+        })
+
+    }
+
+    function diaMaiorAlerta() {
+        fetch("/totens/diaMaiorAlerta", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO listar()!")
+
+            if (resposta.ok) {
+                console.log("Função listar(): ")
+
+                resposta.json().then(function (resposta) {
+                    var dados = resposta[0];
+
+                    console.log(dados);
+                    DiaMaisAlerta.innerHTML = dados.dia;
+                })
+            }
+        })
+
+    }
+
+
+
+    function listarTotens() {
+        listaTotens.innerHTML = "<option value='' selected disabled>Selecione um Totem</option>";
+        fetch(`/totens/listarTotens/${fkCompanhia}`, {
+            method: "GET",
+        })
+            .then(function (resposta) {
+                return resposta.json();
+
+            })
+            .then(function (totens) {
+                const listaTotens = document.getElementById("listaTotens");
+                listaTotens.innerHTML = "";
+
+                totens.forEach((to) => {
+                    listaTotens.innerHTML += `<option value='${to.nome_totem}'>${to.nome_totem}</option>`;
+                });
+            })
+            .catch(function (erro) {
+                console.log(`#ERRO: ${erro}`);
+            });
+    }
+
+
+
+
+
+
+    // Estrutura dos Gráficos
+    const config = {
+        type: 'scatter',
+        data: data,
+        options: {
+            scales: {
+                x: {
+                    type: 'linear',
+                    position: 'bottom'
+                }
+            }
+        }
+    };
+
+
+
+
+</script>

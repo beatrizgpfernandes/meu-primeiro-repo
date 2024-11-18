@@ -1,0 +1,793 @@
+@font-face {
+    font-family: montSerrat;
+    src: url(../Fonts/MontSerrat-Regular.ttf);
+  }
+
+  @font-face {
+    font-family: openSans;
+    src: url(../Fonts/OpenSans-Regular.ttf);
+  }
+
+
+body {
+    padding: 0;
+    margin: 0;
+}
+.conteudoPagina {
+    display: flex;
+    background-color: #cfcfcf;
+    width: 100vw;
+    height: 100vh;
+}
+
+.conteudoPagina .boxLateral {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000000;
+    height: 100vh;
+    width: 13vw;
+}
+
+.conteudoPagina .boxLateral .boxIdentificacao {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 24vh;
+    width: 11vw;
+    font-family: "montSerrat";
+    
+}
+
+.conteudoPagina .boxLateral .boxIdentificacao h1 {
+    font-size: 21px;
+    margin: 0%;
+    color: #ffffff;
+    text-align: center;
+    padding-bottom: 5%;
+}
+
+.conteudoPagina .boxLateral .boxIdentificacao h3 {
+    margin: 0%;
+    color: #d9d9d9;
+    font-size: 11px;
+   text-decoration: underline;
+}
+
+.conteudoPagina .boxLateral .boxOpcoes {
+    width: 13vw;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #ffffff;
+}
+
+.conteudoPagina .boxLateral .boxOpcoes .box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "montSerrat";
+    font-weight: 700;
+    width: 13vw;
+    height: 5vw;
+    
+}
+
+a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.conteudoPagina .boxLateral .boxSair {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 13vw;
+    height: 7vh;
+    color: #ffffff;
+    font-family: "montSerrat";
+    font-weight: 700;
+
+}
+
+.conteudoPagina .conteudoMetricas {
+    height: 100vh;
+    width: 85vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.conteudoPagina .conteudoMetricas .boxTitulo {
+    height: 10vh;
+    width: 87vw;
+    display: flex;
+}
+
+.conteudoPagina .conteudoMetricas .boxTitulo .titulo {
+    height: 10vh;
+    width: 45vw;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    font-family: "montSerrat";
+    font-weight: 700;
+    font-size: 28px;
+    padding-left: 3%;
+    color: #18204b;
+}
+
+.conteudoPagina .conteudoMetricas .boxTitulo .selecionarTotem {
+    height: 10vh;
+    width: 41vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.conteudoPagina .conteudoMetricas .boxTitulo .selecionarTotem select {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #18204b;
+    color: #ffffff;
+    height: 4.7vh;
+    width: 15vw;
+    text-align: center;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    font-family: "montSerrat";
+
+}
+
+.conteudoPagina .conteudoMetricas .boxTitulo .selecionarTotem .boxLogo{
+    height: 10vh;
+    width: 17vw;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding-right: 2%;
+}
+.conteudoPagina .conteudoMetricas .boxTitulo .selecionarTotem .boxLogo img{
+    width: 20%;
+}
+
+.conteudoPagina .conteudoMetricas .boxConteudo{
+    height: 90vh;
+    width: 85vw;
+    display: flex;
+    flex-direction: row;
+}
+
+.conteudoPagina .conteudoMetricas .boxConteudo .boxComponentes {
+    height: 90vh;
+    width: 63vw;
+    
+}
+
+.conteudoPagina .conteudoMetricas .boxConteudo .boxComponentes .boxMedias{
+    width: 63vw;
+    height: 32vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-end;
+}
+
+.conteudoPagina .conteudoMetricas .boxConteudo .boxComponentes .boxMedias .box {
+    width: 17vw;
+    height: 27vh;
+    background-color: #f8f8f8;
+    border-radius: 20px;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+}
+
+.conteudoPagina .conteudoMetricas .boxConteudo .boxComponentes .boxMedias .box .boxIntTitulo {
+    width: 17vw;
+    height: 12vh;
+    font-family: "montSerrat";
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    font-weight: 500;
+    font-size: 22px;
+    text-align: center;
+
+}
+
+.conteudoPagina .conteudoMetricas .boxConteudo .boxComponentes .boxMedias .box .boxIntMedia {
+    width: 17vw;
+    height: 15vh;
+    font-family: "openSans";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+    font-weight: 675;
+
+}
+
+.conteudoPagina .conteudoMetricas .boxConteudo .boxComponentes .boxMedias .box .boxIntMedia span {
+    font-size: 28px;
+    font-weight: 500;
+
+}
+
+.conteudoPagina .conteudoMetricas .boxConteudo .boxComponentes .boxGrafico {
+    width: 63vw;
+    height: 58vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.conteudoPagina .conteudoMetricas .boxConteudo .boxComponentes .boxGrafico .grafico {
+    height: 47vh;
+    width: 60vw;
+    background-color: #f8f8f8;
+    border-radius: 20px;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.conteudoPagina .conteudoMetricas .boxConteudo .boxComponentes .boxGrafico .grafico .tituloGrafico{
+    height: 8vh;
+    width: 56vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.conteudoPagina .conteudoMetricas .boxConteudo .boxComponentes .boxGrafico .grafico .tituloGrafico h2{
+    font-family: "montSerrat";
+    font-size: 15px;
+}
+
+.conteudoPagina .conteudoMetricas .boxConteudo .boxComponentes .boxGrafico .grafico .tituloGrafico select{
+    background-color: #18204b;
+    color: #ffffff;
+    border-radius: 20px;
+    font-family: "montSerrat";
+    height: 3.5vh;
+    width: 12vw;
+    text-align: center;
+}
+
+.conteudoPagina .conteudoMetricas .boxConteudo .boxComponentes .boxGrafico .grafico .boxIntGrafico {
+    height: 39vh;
+    width: 57vw;
+}
+
+.conteudoPagina .conteudoMetricas .boxConteudo .boxAlertas {
+    height: 90vh;
+    width: 20vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.conteudoPagina .conteudoMetricas .boxConteudo .boxAlertas .boxRankingAlertas {
+    height: 80vh;
+    width: 18vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f8f8;
+    border-radius: 20px;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+
+}
+
+.conteudoPagina .conteudoMetricas .boxConteudo .boxAlertas .boxRankingAlertas .boxTitulo {
+    height: 18vh;
+    width: 16vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "montSerrat";
+    font-size: 23px;
+    font-weight: 650;
+    text-align: center;
+}
+
+.conteudoPagina .conteudoMetricas .boxConteudo .boxAlertas .boxRankingAlertas .boxQtd {
+    height: 7vh;
+    width: 16vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "montSerrat";
+    font-size: 10px;
+    color: #000000;
+}
+
+.conteudoPagina .conteudoMetricas .boxConteudo .boxAlertas .boxRankingAlertas .boxRankingTotens {
+    height: 40vh;
+    width: 18vw;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+} 
+
+.conteudoPagina .conteudoMetricas .boxConteudo .boxAlertas .boxRankingAlertas .boxRankingTotens .boxTotem{
+   height: 7vh;
+   width: 13vw;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
+   font-family: "openSans";
+}
+
+.conteudoPagina .conteudoMetricas .boxConteudo .boxAlertas .boxRankingAlertas .boxSaibaMais {
+    height: 15vh;
+    width: 16vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.conteudoPagina .conteudoMetricas .boxConteudo .boxAlertas .boxRankingAlertas .boxSaibaMais button{
+    height: 5vh;
+    width: 10vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #18204b;
+    color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    font-family: "montSerrat";
+    font-weight: 700;
+}
+
+
+
+.conteudoPagina .conteudoMetricas .boxTitulo .selecionarTotem1 {
+    height: 10vh;
+    width: 41vw;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.conteudoPagina .conteudoMetricas .boxTitulo .selecionarTotem1 select {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #18204b;
+    color: #ffffff;
+    height: 4.7vh;
+    width: 15vw;
+    text-align: center;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    font-family: "montSerrat";
+
+}
+
+.conteudoPagina .conteudoMetricas .boxTitulo .selecionarTotem1 .boxLogo{
+    height: 10vh;
+    width: 17vw;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding-right: 2%;
+}
+.conteudoPagina .conteudoMetricas .boxTitulo .selecionarTotem1 .boxLogo img{
+    width: 26%;
+}
+
+.conteudoPagina .conteudoMetricas .boxConteudoTempoReal {
+    height: 90vh;
+    width: 85vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.conteudoPagina .conteudoMetricas .boxConteudoTempoReal .boxComponentesAtual {
+    height: 40vh;
+    width: 85vw;
+    display: flex;
+    flex-direction: row;
+}
+
+.conteudoPagina .conteudoMetricas .boxConteudoTempoReal .boxComponentesAtual .boxDiscoRam {
+    height: 38vh;
+    width: 58vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-end;
+}
+
+.conteudoPagina .conteudoMetricas .boxConteudoTempoReal .boxComponentesAtual .boxDiscoRam .box {
+    height: 34vh;
+    width: 27vw;
+    background-color: #f8f8f8;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.conteudoPagina .conteudoMetricas .boxConteudoTempoReal .boxComponentesAtual .boxDiscoRam .box select {
+    height: 5vh;
+    width: 27vw;
+    background-color: #18204b;
+    color: #ffffff;
+    font-family: "montSerrat";
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    font-size: 16px;
+}
+
+.conteudoPagina .conteudoMetricas .boxConteudoTempoReal .boxComponentesAtual .boxDiscoRam .box .tituloComponentesAtual{
+    height: 4vh;
+    width: 27vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "montSerrat";
+    font-weight: 700;
+    font-size: 17px;
+    color: #0e132c;
+}
+
+.conteudoPagina .conteudoMetricas .boxConteudoTempoReal .boxComponentesAtual .boxDiscoRam .box .graficoComponenteAtual {
+    height: 25vh;
+    width: 27vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.conteudoPagina .conteudoMetricas .boxConteudoTempoReal .boxComponentesAtual .boxDiscoRam .box .graficoComponenteAtual canvas {
+    height: 75% !important;
+    width: 65% !important;
+}
+
+.conteudoPagina .conteudoMetricas .boxConteudoTempoReal .boxQtdTotal {
+    height: 38vh;
+    width: 27vw;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.conteudoPagina .conteudoMetricas .boxConteudoTempoReal .boxQtdTotal .box {
+    height: 34vh;
+    width: 22vw;
+    background-color: #f8f8f8;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.conteudoPagina .conteudoMetricas .boxConteudoTempoReal .boxQtdTotal .box .boxTitulo {
+    height: 15vh;
+    width: 18vw;
+    font-family: "montSerrat";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-weight: 700;
+    font-size: 20px;
+    color: #0e132c;
+}
+
+.conteudoPagina .conteudoMetricas .boxConteudoTempoReal .boxQtdTotal .box .boxQtd {
+    height: 19vh;
+    width: 18vw;
+    font-family: "openSans";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: 50px;
+}
+
+.conteudoPagina .conteudoMetricas .boxConteudoTempoReal .boxTempoRealAlertas {
+    height: 50vh;
+    width: 85vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.conteudoPagina .conteudoMetricas .boxConteudoTempoReal .boxTempoRealAlertas .boxGeralCpu {
+    height: 50vh;
+    width: 58vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.conteudoPagina .conteudoMetricas .boxConteudoTempoReal .boxTempoRealAlertas .boxGraficoCpuAtual{
+    height: 47vh;
+    width: 56vw;
+    background-color: #f8f8f8;
+    border-radius: 20px;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.conteudoPagina .conteudoMetricas .boxConteudoTempoReal .boxTempoRealAlertas .boxGraficoCpuAtual .boxTitulo{
+    height: 8vh;
+    width: 50vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.conteudoPagina .conteudoMetricas .boxConteudoTempoReal .boxTempoRealAlertas .boxGraficoCpuAtual .boxTitulo h2 {
+    color: #0e132c;
+    font-family: "montSerrat";
+    font-weight: 800;
+    font-size: 17px;
+}
+
+.conteudoPagina .conteudoMetricas .boxConteudoTempoReal .boxTempoRealAlertas .boxGraficoCpuAtual .boxTitulo select {
+    color: #ffffff;
+    background-color: #18204b;
+    font-family: "montSerrat";
+    font-weight: 400;
+    font-size: 12px;
+    height: 4vh;
+    width: 13vw;
+    border: none;
+    border-radius: 20px;
+}
+
+.conteudoPagina .conteudoMetricas .boxConteudoTempoReal .boxTempoRealAlertas .boxGraficoCpuAtual .boxGrafico {
+    height: 39vh;
+    width: 52vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.conteudoPagina .conteudoMetricas .boxConteudoTempoReal .boxTempoRealAlertas .boxGeralAlertas{
+    height: 47vh;
+    width: 27vw;
+    /* background-color: #f8f8f8; */
+    /* box-shadow: 0 1px 8px rgba(0, 0, 0, 0.4); */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.conteudoPagina .conteudoMetricas .boxConteudoTempoReal .boxTempoRealAlertas .boxAlertas{
+    height: 47vh;
+    width: 27vw;
+    /* background-color: #f8f8f8; */
+    border-radius: 20px;
+    /* box-shadow: 0 1px 8px rgba(0, 0, 0, 0.4); */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.conteudoPagina .conteudoMetricas .boxConteudoTempoReal .boxTempoRealAlertas .boxAlertas .boxTitulo {
+    height: 10vh;
+    width: 27vw;
+    font-size: 22px;
+    font-family: 'montSerrat';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+}
+
+.conteudoPagina .conteudoMetricas .boxConteudoTempoReal .boxTempoRealAlertas .boxAlertas .boxAlertasGeral {
+    height: 33vh;
+    width: 27vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.conteudoPagina .conteudoMetricas .boxConteudoTempoReal .boxTempoRealAlertas .boxAlertas .boxAlertasGeral .box {
+    height: 5vh;
+    width: 24vw;
+    background-color: rgb(136, 14, 14);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    font-family: "openSans";
+    font-weight: 500;
+    font-size: 15px;
+    border-radius: 10px;
+    margin-bottom: 2%;
+}
+
+
+
+
+
+/* Cadastro de Máquina (Totem) */
+
+.conteudoPagina .conteudoCadastro {
+    height: 100vh;
+    width: 85vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.conteudoPagina .conteudoCadastro .boxCadastro{
+    height: 85vh;
+    width: 70vw;
+    display: flex;
+    flex-direction: row;
+    border-radius: 20px;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+
+}
+
+.conteudoPagina .conteudoCadastro .boxCadastro .boxFundoFosco {
+    height: 85vh;
+    width: 34vw;
+    background-image: url(../Images/imgCheckInTotem.jpg);
+    background-size: cover;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+
+}
+
+.conteudoPagina .conteudoCadastro .boxCadastro  .boxFundoFosco .boxImg {
+    height: 85vh;
+    width: 34vw;
+    background-color: #000000a6;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.conteudoPagina .conteudoCadastro .boxCadastro  .boxFundoFosco .boxImg {
+    height: 85vh;
+    width: 34vw;
+    background-color: #000000da;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.conteudoPagina .conteudoCadastro .boxCadastro  .boxFundoFosco .boxImg h1 {
+    color: #f8f8f8;
+    font-family: "montSerrat";
+    margin-bottom: 2%;
+
+}
+
+.conteudoPagina .conteudoCadastro .boxCadastro  .boxFundoFosco .boxImg span {
+    width: 25vw;
+    text-align: center;
+    color: #ffffff;
+    font-family: "montSerrat";
+    font-size: 15px;
+    font-weight: 500;
+    
+}
+ 
+
+
+/* .conteudoPagina .conteudoCadastro .boxCadastro .boxFundoFosco .boxImg img {
+    width: 169%;
+} */
+
+.conteudoPagina .conteudoCadastro .boxCadastro .boxFormulario {
+    height: 85vh;
+    width: 36vw;
+    background-color: var(--white);;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+
+
+}
+
+.conteudoPagina .conteudoCadastro .boxCadastro .boxFormulario .tituloFormulario{
+    height: 15vh;
+    width: 32vw;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    
+}
+
+.conteudoPagina .conteudoCadastro .boxCadastro .boxFormulario .tituloFormulario h1 {
+    color: #384470;
+    font-family: "montSerrat";
+    font-weight: 700;
+}
+
+.conteudoPagina .conteudoCadastro .boxCadastro .boxFormulario .divFormulario {
+    height: 42vh;
+    width: 32vw;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+}
+
+.conteudoPagina .conteudoCadastro .boxCadastro .boxFormulario .divFormulario input {
+    height: 2vh;
+    width: 20vw;
+    border: none;
+    border-radius: 20px;
+    padding: 0.7rem 0.7rem;
+    font-family: "montSerrat";
+    font-size: 95%;
+    font-weight: 500;
+}
+
+.conteudoPagina .conteudoCadastro .boxCadastro .boxFormulario .divCadastrar {
+    height: 20vh;
+    width: 32vw;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.conteudoPagina .conteudoCadastro .boxCadastro .boxFormulario .divCadastrar button {
+    height: 5vh;
+    width: 15vw;
+    background-color: #18204b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    font-family: "montSerrat";
+    font-weight: 600;
+}
+

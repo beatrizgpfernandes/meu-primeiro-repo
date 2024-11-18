@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GateWatch | Dashboard</title>
+  <link rel="shortcut icon" type="image/png" href="Images/gwLogo_white.png">
+  <link rel="stylesheet" href="./CSS/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css">
+  <meta name="keywords" content="navbar, responsive, HTML, CSS, JavaScript, nav" />
+  <meta name="author" content="Manikanta Vedula" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+
+  <!-- NavBar -->
+  <nav class="navbar">
+    <div class="menu-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="logo">
+      <img class="logoImg" src="Images/gwLogo_white.png" alt="">
+    </div>
+
+    <ul class="nav-linksDash">
+      <li><a href="cadastro.html">Sair</a></li>
+    </ul>
+  </nav>
+  <!-- NavBar -->
+
+  <div class="conteudo">
+    <div class="sidebar">
+      <div class="menu-perfil">
+        <div class="menu-perfil-foto"></div>
+        <h1 class="fonte_perfil" id="nome_perfil"></h1>
+        <p>Gerente</p>
+      </div>
+      <div class="opcoesDashboard">
+        <button class="boxOpcoes">MÉTRICAS</button>
+        <a href="dashGerenteAlertas.html"><button class="boxOpcoes" style="background-color: #656c99;"
+            >ALERTAS</button></a>
+        <a href="cadastroTotens.html" ><button class="boxOpcoes" style="background-color: #656c99;">CADASTRAR</button></a>
+      </div>
+    </div>
+
+    <div class="conteudoMetricas">
+      <div class="boxMetricasGerais">
+        <div class="titulo">
+          <h2>Métricas Gerais por Componente</h2>
+          <select id="select_periodo" onchange="carregarMetricas()">
+            <option value="0" selected disabled>Período</option>
+            <option value="diaria">Diária</option>
+            <option value="semanal">Semanal</option>
+            <option value="mensal">Mensal</option>
+          </select>
+        </div>
+
+        <div class="metricas">
+          <div class="box">
+            <div class="tituloBox" id="titulo_cpu">MÉDIA DE FREQUÊNCIA CPU</div>
+            <div class="boxDados">
+              <div class="dados" id="dados_cpu">0%</div>
+              <div class="legenda"></div>
+            </div>
+          </div>
+          <div class="box">
+            <div class="tituloBox" id="titulo_memoria">MÉDIA DE USO MEMÓRIA</div>
+            <div class="boxDados">
+              <div class="dados" id="dados_memoria">0%</div>
+              <div class="legenda"></div>
+            </div>
+          </div>
+          <div class="box">
+            <div class="tituloBox" id="titulo_disco">MÉDIA DE USO DISCO</div>
+            <div class="boxDados">
+              <div class="dados" id="dados_disco">0%</div>
+              <div class="legenda"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mediasTotem">
+        <div class="titulo">
+          <h2>Médias por Totem</h2>
+        </div>
+        <div class="metricas">
+          <div class="box">
+            <div class="tituloBox">
+              <select id="select_totem_1" onchange="carregarMetricasTotem(1)">
+                <option value="0" selected disabled>Totem 1</option>
+                <option value="1">Totem 1</option>
+                <option value="2">Totem 2</option>
+                <option value="3">Totem 3</option>
+              </select>
+            </div>
+            <div class="boxDados">
+              <div class="dados">
+                <h2>CPU:</h2>
+                <div class="boxInterno" id="dados_cpu_totem_1">0%</div>
+              </div>
+              <div class="dados">
+                <h2>MEMÓRIA:</h2>
+                <div class="boxInterno" id="dados_memoria_totem_1">0%</div>
+              </div>
+              <div class="dados">
+                <h2>DISCO:</h2>
+                <div class="boxInterno" id="dados_disco_totem_1">0%</div>
+              </div>
+            </div>
+          </div>
+          <div class="box">
+            <div class="tituloBox">
+              <select id="select_totem_2" onchange="carregarMetricasTotem(2)">
+                <option value="0" selected disabled>Totem 2</option>
+                <option value="1">Totem 1</option>
+                <option value="2">Totem 2</option>
+                <option value="3">Totem 3</option>
+              </select>
+            </div>
+            <div class="boxDados">
+              <div class="dados">
+                <h2>CPU:</h2>
+                <div class="boxInterno" id="dados_cpu_totem_2">0%</div>
+              </div>
+              <div class="dados">
+                <h2>MEMÓRIA:</h2>
+                <div class="boxInterno" id="dados_memoria_totem_2">0%</div>
+              </div>
+              <div class="dados">
+                <h2>DISCO:</h2>
+                <div class="boxInterno" id="dados_disco_totem_2">0%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const nomeUsuario = sessionStorage.getItem('NOME_USUARIO');
+
+    if (nomeUsuario) {
+        document.getElementById('nome_perfil').textContent = nomeUsuario;
+    } else {
+        document.getElementById('nome_perfil').textContent = 'Usuário não identificado';
+    }
+
+    function carregarMetricas() {
+      const periodo = document.getElementById("select_periodo").value;
+
+      fetch(`/dash/${periodo}`, { method: "GET" })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then(data => {
+
+          document.getElementById('dados_cpu').textContent = `${data.cpu_usage}%`;
+          document.getElementById('dados_memoria').textContent = `${data.memory_perc}%`;
+          document.getElementById('dados_disco').textContent = `${data.disk_perc}%`;
+
+          const tituloCpu = document.getElementById('titulo_cpu');
+          const tituloMemoria = document.getElementById('titulo_memoria');
+          const tituloDisco = document.getElementById('titulo_disco');
+
+          if (periodo === 'diaria') {
+            tituloCpu.textContent = 'MÉDIA DIÁRIA CPU';
+            tituloMemoria.textContent = 'MÉDIA DIÁRIA MEMÓRIA';
+            tituloDisco.textContent = 'MÉDIA DIÁRIA DISCO';
+          } else if (periodo === 'semanal') {
+            tituloCpu.textContent = 'MÉDIA SEMANAL CPU';
+            tituloMemoria.textContent = 'MÉDIA SEMANAL MEMÓRIA';
+            tituloDisco.textContent = 'MÉDIA SEMANAL DISCO';
+          } else if (periodo === 'mensal') {
+            tituloCpu.textContent = 'MÉDIA MENSAL CPU';
+            tituloMemoria.textContent = 'MÉDIA MENSAL MEMÓRIA';
+            tituloDisco.textContent = 'MÉDIA MENSAL DISCO';
+          }
+        })
+        .catch(error => {
+          console.error("Erro ao buscar métricas:", error);
+        });
+    }
+
+    function carregarMetricasTotem(totemNumber) {
+      const totemId = document.getElementById(`select_totem_${totemNumber}`).value;
+
+      if (totemId === "0") return;
+
+      fetch(`/dash/totem/${totemId}`, { method: "GET" })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then(data => {
+          document.getElementById(`dados_cpu_totem_${totemNumber}`).textContent = `${data.cpu_usage}%`;
+          document.getElementById(`dados_memoria_totem_${totemNumber}`).textContent = `${data.memory_perc}%`;
+          document.getElementById(`dados_disco_totem_${totemNumber}`).textContent = `${data.disk_perc}%`;
+        })
+        .catch(error => {
+          console.error("Erro ao buscar métricas do totem:", error);
+        });
+    }
+  </script>
+</body>
+
+</html>

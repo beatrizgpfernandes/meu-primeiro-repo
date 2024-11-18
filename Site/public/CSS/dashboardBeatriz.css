@@ -1,0 +1,237 @@
+@font-face {
+    font-family: montSerrat;
+    src: url(../Fonts/MontSerrat-Regular.ttf);
+  }
+
+  @font-face {
+    font-family: openSans;
+    src: url(../Fonts/OpenSans-Regular.ttf);
+  }
+
+
+.conteudoPagina .conteudoMetricas {
+    height: 100vh;
+    width: 87vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.boxConteudoMetricas {
+    display: flex;
+    height: 90vh;
+    width: 87vw;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.boxGeralKpiWebCrawler {
+    height: 39vh;
+    width: 87vw;
+    display: flex;
+    flex-direction: row;
+}
+
+.boxGeralKpi {
+    /* background-color: pink; */
+    height: 40vh;
+    width: 41vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.boxGeralKpi .divSelect {
+    height: 5vh;
+    width: 38vw;
+}
+
+.boxGeralKpi .divSelect select {
+    background-color: #18204b;
+    color: white;
+    height: 5vh;
+    width: 38vw;
+    border-radius: 10px;
+    font-family: "openSans";
+    font-size: 15px;
+}
+
+.divKpis {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 34vh;
+    width: 38vw;
+}
+
+.boxKpiTotem {
+    background-color: #f8f8f8;
+    height: 33vh;
+    width: 18vw;
+    border-radius: 10px;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.boxMetrica {
+    /* background-color: aqua; */
+    height: 26vh;
+    width: 15.5vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.boxMetrica .divLinha {
+    background-color: #18204b;
+    height: 26vh;
+    width: 0.7vw;
+    border-radius: 10px;
+}
+
+.boxMetrica .divMetrica {
+    /* background-color: #18204b; */
+    height: 26vh;
+    width: 14vw;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.boxMetrica .divMetrica h1 {
+    font-size: 23px;
+    font-family: "montSerrat";
+    margin: 0%;
+    padding: 0%;
+    font-weight: 500;
+}
+
+.boxMetrica .divMetrica h2 {
+    font-size: 28px;
+    font-family: "openSans";
+    font-weight: 750;
+    margin: 0%;
+    padding: 0%;
+}
+
+.boxMetrica .divMetrica .divAjuda {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.boxMetrica .divMetrica .divAjuda img{
+    cursor: pointer;
+}
+
+.boxKpiDia {
+    background-color: #f8f8f8;
+    height: 33vh;
+    width: 18vw;
+    border-radius: 10px;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.boxPassageirosXMeses {
+    /* background-color: pink; */
+    height: 39vh;
+    width: 44.7vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.boxPassageirosXMeses .boxTituloGrafico {
+    /* background-color: purple; */
+    height: 5vh;
+    width: 45vw;
+    display: flex;
+    font-size: large;
+    font-family: "montSerrat";
+    font-weight: 600;
+    justify-content: center;
+    align-items: flex-end;
+
+}
+
+.boxPassageirosXMeses .boxGrafico {
+    background-color: #f8f8f8;
+    height: 39vh;
+    width: 45vw;
+    border-radius: 10px;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+
+}
+
+
+
+.boxGeralAlertasEPassageiros {
+    /* background-color: green; */
+    height: 51vh;
+    width: 84.3vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.divFreqAlertas{
+    background-color: #f8f8f8;
+    height: 47vh;
+    width: 49vw;
+    border-radius: 10px;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.divFreqAlertas .divTituloESelect {
+    /* background-color: pink; */
+    height: 7vh;
+    width: 45vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: large;
+    font-family: "montSerrat";
+    font-weight: 600;
+}
+
+.divFreqAlertas .divTituloESelect select{
+    background-color: #18204b;
+    height: 4vh;
+    width: 14vw;
+    border-radius: 10px;
+    font-family: "openSans";
+    font-size: 15px;
+    color: white;
+}
+
+.divFreqAlertas .divGrafFreqAlertas {
+    background-color: purple;
+    height: 40vh;
+    width: 46vw;
+}
+
+.divAlertasXPassageiros {
+    background-color: #f8f8f8;
+    height: 47vh;
+    width: 33.7vw;
+    border-radius: 10px;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+
+}

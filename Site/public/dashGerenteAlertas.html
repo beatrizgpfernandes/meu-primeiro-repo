@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GateWatch | Dashboard</title>
+  <link rel="shortcut icon" type="image/png" href="Images/gwLogo_white.png">
+  <link rel="stylesheet" href="./CSS/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+  <!-- NavBar -->
+  <nav class="navbar">
+    <div class="menu-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="logo">
+      <img class="logoImg" src="Images/gwLogo_white.png" alt="">
+    </div>
+
+    <ul class="nav-linksDash">
+      <li><a href="cadastro.html">Sair</a></li>
+    </ul>
+  </nav>
+  <!-- NavBar -->
+
+  <!-- Side Bar -->
+  <div class="conteudo">
+    <div class="sidebar">
+      <div class="menu-perfil">
+        <div class="menu-perfil-foto"></div>
+        <h2 class="fonte_perfil" id="nome_perfil"></h2>
+        <p>Gerente</p>
+      </div>
+      <div class="opcoesDashboard">
+        <a href="dashGerenteMetricas.html"><button class="boxOpcoes"
+            style="background-color: #656c99;">MÉTRICAS</button></a>
+        <button class="boxOpcoes">ALERTAS</button>
+        <a href="cadastroTotens.html" ><button class="boxOpcoes" style="background-color: #656c99;">CADASTRAR</button></a>
+
+      </div>
+    </div>
+
+    <div class="conteudoAlertas">
+      <div class="tituloOpcoes">
+        <div class="boxTitulo">
+          <div class="titulo">
+            <h2>Total de Alertas</h2>
+          </div>
+          <div class="selectOpcoes">
+            <select id="componenteSelect">
+              <option value="0" selected disabled>Componente</option>
+              <option value="cpu">CPU</option>
+              <option value="memoria">Memória</option>
+              <option value="disco">Disco</option>
+            </select>
+            <select id="tipoGrafico">
+              <option value="0" selected disabled>Gráfico</option>
+              <option value="line">Linha</option>
+              <option value="bar">Barra</option>
+            </select>
+            <select id="periodoSelect">
+              <option value="0" selected disabled>Período</option>
+              <option value="hora">Horas do Dia Atual</option>
+              <option value="dia_semana">Dias da Semana Atual</option>
+              <option value="semana_mes">Semanas do Mês Atual</option>
+            </select>
+            <button onclick="getAlertas()">Gerar</button>
+          </div>
+        </div>
+        <div class="boxRanking">
+          <div class="ranking">
+            <h3>Ranking de Componentes</h3>
+            <ul id="rankingList"></ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="graficoAlertas" style="display: none;">
+        <div>
+          <canvas id="alertasChart" width="300" height="80"
+            style=" margin: 10px; background-color: #2c3651bd; padding: 5px; border-radius: 3px;">
+          </canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const nomeUsuario = sessionStorage.getItem('NOME_USUARIO');
+
+    if (nomeUsuario) {
+      document.getElementById('nome_perfil').textContent = nomeUsuario;
+    } else {
+      document.getElementById('nome_perfil').textContent = 'Usuário não identificado';
+    }
+
+    async function getAlertas() {
+      const componente = document.getElementById('componenteSelect').value;
+      const periodo = document.getElementById('periodoSelect').value;
+
+      if (componente === '0' || periodo === '0') {
+        alert("Por favor, selecione um componente e um período.");
+        return;
+      }
+
+      try {
+        const response = await fetch(`/dash/alertas?componente=${componente}&periodo=${periodo}`);
+        if (!response.ok) {
+          throw new Error('Erro ao buscar alertas');
+        }
+        const data = await response.json();
+        updateChart(data, componente, periodo);
+        getRanking();
+      } catch (error) {
+        console.error('Erro ao buscar alertas:', error);
+      }
+    }
+
+    function updateChart(data, componente, periodo) {
+      let graphic = document.getElementById('tipoGrafico').value;
+
+      document.querySelector('.graficoAlertas').style.display = 'block';
+
+      const ctx = document.getElementById('alertasChart').getContext('2d');
+
+      let labels;
+
+      if (periodo === 'dia_semana') {
+
+        labels = data.map(item => item.label);
+      } else if (periodo === 'semana_mes') {
+
+        labels = data.map((item, index) => (index + 1).toString());
+      } else {
+
+        labels = data.map(item => `${item.label}:00`);
+      }
+
+      const values = data.map(item => item.total_alertas);
+
+      if (window.alertasChart instanceof Chart) {
+        window.alertasChart.destroy();
+      }
+
+      window.alertasChart = new Chart(ctx, {
+        type: graphic,
+        data: {
+          labels: labels,
+          datasets: [{
+            label: `Alertas de ${componente} (${periodo})`,
+            data: values,
+            backgroundColor: '#656c99',
+            borderColor: '#121518f4',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            x: {
+              grid: {
+                color: '#ffffff'
+              },
+              ticks: {
+                color: '#ffffff'
+              },
+              title: {
+                display: true,
+                text: periodo === 'dia_semana' ? 'Dias' : periodo === 'semana_mes' ? 'Semanas' : 'Horário',
+                color: '#ffffff'
+              }
+            },
+            y: {
+              beginAtZero: true,
+              grid: {
+                color: '#ffffff'
+              },
+              ticks: {
+                color: '#ffffff'
+              },
+              title: {
+                display: true,
+                text: 'Quantidade de Alertas',
+                color: '#ffffff'
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              display: true,
+              labels: {
+                color: '#ffffff'
+              }
+            }
+          }
+        }
+      });
+    }
+
+    async function getRanking() {
+      const periodo = document.getElementById('periodoSelect').value;
+
+      try {
+        const response = await fetch(`/dash/ranking?periodo=${periodo}`);
+        if (!response.ok) {
+          throw new Error('Erro ao buscar ranking');
+        }
+        const rankingData = await response.json();
+        console.log(rankingData);
+        updateRanking(rankingData);
+      } catch (error) {
+        console.error('Erro ao buscar ranking:', error);
+      }
+    }
+
+    function capitalizeFirstLetter(first) {
+      return first.charAt(0).toUpperCase() + first.slice(1).toLowerCase();
+    }
+
+    function updateRanking(data) {
+      const rankingList = document.getElementById('rankingList');
+      rankingList.innerHTML = '';
+
+      data.forEach((item, index) => {
+        const componente = capitalizeFirstLetter(item.componente);
+        const listItem = document.createElement('li');
+        listItem.textContent = `${index + 1}º ${componente}: ${item.total_alertas} alertas`;
+        rankingList.appendChild(listItem);
+      });
+    }
+
+
+  </script>
+
+</body>
+
+</html>

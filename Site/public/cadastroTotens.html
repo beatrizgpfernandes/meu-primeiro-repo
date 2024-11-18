@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Métricas Gerente - GateWatch</title>
+    <link rel="stylesheet" href="./CSS/styleDashboards.css">
+</head>
+
+<body>
+
+    <div class="conteudoPagina">
+        <div class="boxLateral">
+            <div class="boxIdentificacao">
+                <h1 class="fonte_perfil" id="nome_perfil"></h1>
+                <h3>GERENTE DE DADOS</h3>
+            </div>
+            <div class="boxOpcoes">
+                <a href="dashboardGerenteAlertas-Beatriz.html">
+                    <div class="box">ALERTAS</div>
+                </a>
+                <a href="https://docs.google.com/spreadsheets/d/1B82655KRgpUoX_9AH-9rYaNKjyUik15wYJpGH6qrKFY/edit?gid=0#gid=0"><div class="box">RELATÓRIO</div></a>
+                <div class="box" style="background-color: #41446877;">TOTENS</div>
+            </div>
+            <div class="boxSair">SAIR</div>
+        </div>
+
+        <div class="conteudoCadastro">
+            <div class="boxCadastro">
+                <div class="boxFundoFosco">
+                    <div class="boxImg">
+                        <h1 class="tituloSobreImagem">Cadastre os Totens</h1>
+                        <span>Para um monitoramento mais eficiente e personalizado de seus totens de check-in, realize o cadastro ao lado.</span>
+                    </div>
+                </div>
+                <div class="boxFormulario">
+                    <div class="tituloFormulario">
+                        <h1>Cadastrar</h1>
+                    </div>
+                    <div class="divFormulario">
+                        <input id="nomeTotem" type="text" placeholder="Nome">
+                        <input id="numSerie" type="text" placeholder="Número de Série">
+                        <input id="fabricante" type="text" placeholder="Fabricante">
+                        <input id="ano" type="text" placeholder="Ano">
+                    </div>
+                    <div class="divCadastrar">
+                        <button onClick="cadastrarTotem()" >CADASTRAR</button>
+                        <div class="divMensagemErro"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>
+
+<script>
+
+    const nomeUsuario = sessionStorage.getItem('NOME_USUARIO');
+
+    const companhia = sessionStorage.getItem('FK_COMPANHIA');
+
+    if (nomeUsuario) {
+        document.getElementById('nome_perfil').textContent = nomeUsuario;
+    } else {
+        document.getElementById('nome_perfil').textContent = 'Usuário não identificado';
+    }
+
+
+    async function cadastrarTotem () {
+        var nome =  document.getElementById('nomeTotem').value;
+        var numSerie =  document.getElementById('numSerie').value;
+        var fabricante =  document.getElementById('fabricante').value;
+        var ano =  document.getElementById('ano').value;
+
+        const response = await fetch(`/usuario/cadastroTotem`, {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                nomeServer: nome,
+                numSerieServer: numSerie,
+                fabricanteServer: fabricante,
+                anoServer: ano,
+                companhiaServer: companhia
+            }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Totem cadastrado com sucesso!', data);
+            alert('Totem cadastrado com sucesso!');
+        })
+        .catch(error => {
+            console.error('Erro ao cadastrar o totem!', error);
+        });  
+
+
+}
+</script>

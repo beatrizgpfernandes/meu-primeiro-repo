@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro-GateWatch</title>
+  <link rel="shortcut icon" type="image/png" href="../Images/gwLogo_white.png">
+  <link rel="stylesheet" href="./CSS/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css">
+  <!-- <meta http-equiv="refresh" content="3" /> -->
+  <meta name="keywords" content="navbar, responsive, HTML, CSS, JavaScript, nav" />
+  <meta name="author" content="Manikanta Vedula" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <script src="../JavaScript/sessao.js"></script>
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="menu-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <div class="logo">
+      <img class="logoImg" src="Images/gwLogo_white.png" alt="">
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="sobre.html">Sobre Nós</a></li>
+      <li><a href="cadastro.html">Cadastro</a></li>
+    </ul>
+  </nav>
+
+  <div class="cad_espaco"></div>
+
+  <div class="cad_container painel-direito-ativo">
+    <!-- Sign Up -->
+    <div class="cad_container__form cad_container--logIn">
+      <form action="#" class="form" id="form1">
+        <h2 class="cad_form__title">Cadastre-se</h2>
+        <input id="nomeCadastro_input" class="cad_inp" type="text" placeholder="Nome">
+        <input id="emailCadastro_input" class="cad_inp" type="email" placeholder="Email">
+        <input id="codSegCadastro_input" class="cad_inp" type="text" placeholder="Código de segurança">
+        <input id="senhaCadastro_input" class="cad_inp" type="password" placeholder="Senha">
+        <input id="confirmaSenhaCadastro_input" class="cad_inp" type="password" placeholder="Confirmar Senha">
+        <button type="button" class="cad_btn" onclick="cadastrar()">Cadastrar</button>
+      </form>
+    </div>
+
+
+    <!-- Sign In -->
+    <div class="cad_container__form cad_container--cadastro">
+      <form action="#" class="form" id="form2">
+        <h2 class="cad_form__title">Login</h2>
+        <input id="emailLogin_input" type="email" placeholder="Email" class="cad_inp" />
+        <input id="senhaLogin_input" type="password" placeholder="Senha" class="cad_inp" />
+        <a href="#" class="cad_link">Esqueceu sua senha?</a>
+        <button onclick="entrar()" class="cad_btn">Login</button>
+      </form>
+    </div>
+
+    <!-- Error and Loading Cards -->
+    <div class="card_erro" id="cardErro" style="display: none; text-align: center; color: red;">
+      <span id="mensagem_erro"></span>
+    </div>
+    <div class="card_aguardar" id="div_aguardar" style="display: none; text-align: center; color: blue;">
+      <span>Aguarde...</span>
+    </div>
+
+    <!-- cad_sobreposicao -->
+    <div class="cad_container__cad_sobreposicao">
+      <div class="cad_sobreposicao">
+        <div class="cad_sobreposicao__panel cad_sobreposicao--esquerdo">
+          <h5>Já possui login?</h5>
+          <button class="cad_btn" id="login">Login</button>
+        </div>
+        <div class="cad_sobreposicao__panel cad_sobreposicao--right">
+          <h5>Ainda não possui Login?</h5>
+          <button class="cad_btn" id="cadastro">Cadastrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cad_espaco"></div>
+
+  <!-- Footer Start -->
+  <!-- <section class="foot">
+  <div class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="footer-about">
+            <h3>Sobre nós</h3>
+            <p>
+              A GateWatch é uma empresa líder em soluções de monitoramento de sistemas críticos, voltada para o setor de aviação. Com um foco em inovação e eficiência, nossa missão é garantir que nossos clientes operem de forma contínua, minimizando qualquer risco de interrupção. Trabalhamos lado a lado com nossos parceiros para oferecer soluções personalizadas e de alto impacto, sempre priorizando a qualidade e a satisfação do cliente. Nosso time é formado por especialistas altamente capacitados, comprometidos em oferecer o melhor serviço e suporte técnico.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="footer-contact">
+            <h3>Entre em Contato</h3>
+            <p><i class="fa fa-map-marker-alt"></i>Rua Haddock Lobo, 545</p>
+            <p><i class="fa fa-phone-alt"></i>+55 11 99999-9999</p>
+            <p><i class="fa fa-envelope"></i>gatewatch@outlook.com</p>
+            <p><i class="fa fa-clock"></i>8:00 | 20:00</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="container copyright">
+      <div class="row">
+        <p>&copy; <a href="index.html">GateWatch</a>, Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </div>
+  </div> -->
+  <!-- Footer End -->
+  </section>
+</body>
+
+</html>
+
+
+<style>
+  :root {
+    /* COLORS */
+    --white: #e9e9e9;
+    --gray: #333;
+    --blue: #0367a6;
+    --lightblue: #008997;
+
+    /* RADII */
+    --button-radius: 0.7rem;
+
+    /* SIZES */
+    --max-width: 1080px;
+    --max-height: 600px;
+
+  }
+
+  body {
+    align-items: center;
+    background-color: var(--white);
+    display: grid;
+    place-items: center;
+  }
+</style>
+
+<script>
+
+  const logincad_Btn = document.getElementById("login");
+  const cadastrocad_Btn = document.getElementById("cadastro");
+  const Form1 = document.getElementById("form1");
+  const Form2 = document.getElementById("form2");
+  const cad_container = document.querySelector(".cad_container");
+
+  logincad_Btn.addEventListener("click", () => {
+    cad_container.classList.remove("painel-direito-ativo");
+  });
+
+  cadastrocad_Btn.addEventListener("click", () => {
+    cad_container.classList.add("painel-direito-ativo");
+  });
+
+  Form1.addEventListener("submit", (e) => e.preventDefault());
+  Form2.addEventListener("submit", (e) => e.preventDefault());
+
+  //Header
+  const menuSlide = () => {
+    const menuIcon = document.querySelector(".menu-icon");
+    const navLinks = document.querySelector(".nav-links");
+    const navLinksInner = document.querySelectorAll(".nav-links li");
+
+    //menu-icon click event
+    menuIcon.addEventListener("click", () => {
+      //toggle active class
+      navLinks.classList.toggle("menu-active");
+
+      //animate navLinks
+      navLinksInner.forEach((li, index) => {
+        if (li.style.animation) {
+          li.style.animation = "";
+        } else {//toggle for menu-icon animation
+          li.style.animation = `navLinkAnime 0.5s ease forwards ${index / 7 + 0.3
+            }s`;
+        }
+      });
+
+      //toggle for menu-icon animation
+      menuIcon.classList.toggle("span-anime");
+    });
+  };
+
+  menuSlide();
+
+  async function cadastrar() {
+    var nomeVar = document.getElementById('nomeCadastro_input').value;
+    var emailVar = document.getElementById('emailCadastro_input').value;
+    var codSegVar = document.getElementById('codSegCadastro_input').value;
+    var senhaVar = document.getElementById('senhaCadastro_input').value;
+    var confirmacaoSenhaVar = document.getElementById('confirmaSenhaCadastro_input').value;
+
+    // 
+    var temCharEspecial = false;
+
+    var caracteresEspeciais = ["$", "@", "#", "%", "*", "&"];
+
+    for (var index = 0; index < senhaVar.length; index++) {
+      if (caracteresEspeciais.includes(senhaVar[index])) {
+        temCharEspecial = true;
+        break;
+      }
+    }
+
+    if (
+      nomeVar === "" || emailVar === "" || codSegVar === "" || senhaVar === "" ||
+      confirmacaoSenhaVar === ""
+    ) {
+      mostrarErro("Todos os campos devem ser preenchidos.");
+      return false;
+    } else if (nomeVar.length <= 1) {
+      mostrarErro("O nome é muito curto.");
+      return false;
+    } else if (emailVar.indexOf("@") < 0 || emailVar.indexOf(".") < 0) {
+      mostrarErro("O email não é válido.");
+      return false;
+    } else if (senhaVar !== confirmacaoSenhaVar) {
+      mostrarErro("As senhas não coincidem.");
+      return false;
+    } else if (temCharEspecial = false) {
+      mostrarErro("A senha não possúi caracter especial.")
+      return false;
+    } else {
+      document.getElementById('div_aguardar').style.display = "block";
+    }
+
+    // Implementação da criptografia - JoãoRossi 16/10/2024
+    const senhaAntiga = [];
+    const senhaCriptografada = [];
+    const emailAntigo = [];
+    const emailCriptografado = [];
+
+    const A = "a0#";
+    const a = "a1#";
+    const B = "b0#";
+    const b = "b1#";
+    const C = "c0#";
+    const c = "c1#";
+    const D = "d0#";
+    const d = "d1#";
+    const E = "e0#";
+    const e = "e1#";
+    const F = "f0#";
+    const f = "f1#";
+    const G = "g0#";
+    const g = "g1#";
+    const H = "h0#";
+    const h = "h1#";
+    const I = "i0#";
+    const i = "i1#";
+    const J = "j0#";
+    const j = "j1#";
+    const K = "k0#";
+    const k = "k1#";
+    const L = "l0#";
+    const l = "l1#";
+    const M = "m0#";
+    const m = "m1#";
+    const N = "n0#";
+    const n = "n1#";
+    const O = "o0#";
+    const o = "o1#";
+    const P = "p0#";
+    const p = "p1#";
+    const Q = "q0#";
+    const q = "q1#";
+    const R = "r0#";
+    const r = "r1#";
+    const S = "s0#";
+    const s = "s1#";
+    const T = "t0#";
+    const t = "t1#";
+    const U = "u0#";
+    const u = "u1#";
+    const V = "v0#";
+    const v = "v1#";
+    const W = "w0#";
+    const w = "w1#";
+    const X = "x0#";
+    const x = "x1#";
+    const Y = "y0#";
+    const y = "y1#";
+    const Z = "z0#";
+    const z = "z1#";
+    const um = "01$";
+    const dois = "02$";
+    const tres = "03$";
+    const quatro = "04$";
+    const cinco = "05$";
+    const seis = "06$";
+    const sete = "07$";
+    const oito = "08$";
+    const nove = "09$";
+    const zero = "00$";
+    const arroba = "ar4";
+    const cifrao = "5if";
+    const porcentagem = "p0r";
+    const Ecomer = "ec4";
+
+    senhaAntiga.push(senhaVar);
+    emailAntigo.push(emailVar);
+
+    var palavra = senhaAntiga[0];
+    var dadoLogar = emailAntigo[0];
+
+    var senhaSecreta = "";
+    var senhaSecretaConf = "";
+    var emailSecreto = "";
+
+    for (index = 0; index < dadoLogar.length; index++) {
+
+      if (dadoLogar[index] == "a") {
+        emailSecreto += a;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "A") {
+        emailSecreto += A;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "b") {
+        emailSecreto += b;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "B") {
+        emailSecreto += B;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "c") {
+        emailSecreto += c;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "C") {
+        emailSecreto += C;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "d") {
+        emailSecreto += d;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "D") {
+        emailSecreto += D;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "e") {
+        emailSecreto += e;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "E") {
+        emailSecreto += E;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "f") {
+        emailSecreto += f;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "F") {
+        emailSecreto += F;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "g") {
+        emailSecreto += g;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "G") {
+        emailSecreto += G;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "h") {
+        emailSecreto += h;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "H") {
+        emailSecreto += H;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "i") {
+        emailSecreto += i;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "I") {
+        emailSecreto += I;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "j") {
+        emailSecreto += j;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "J") {
+        emailSecreto += J;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "k") {
+        emailSecreto += k;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "K") {
+        emailSecreto += K;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "l") {
+        emailSecreto += l;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "L") {
+        emailSecreto += L;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "m") {
+        emailSecreto += m;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "M") {
+        emailSecreto += M;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "n") {
+        emailSecreto += n;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "N") {
+        emailSecreto += N;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "o") {
+        emailSecreto += o;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "O") {
+        emailSecreto += O;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "p") {
+        emailSecreto += p;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "P") {
+        emailSecreto += P;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "q") {
+        emailSecreto += q;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "Q") {
+        emailSecreto += Q;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "r") {
+        emailSecreto += r;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "R") {
+        emailSecreto += R;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "s") {
+        emailSecreto += s;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "S") {
+        emailSecreto += S;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "t") {
+        emailSecreto += t;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "T") {
+        emailSecreto += T;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "u") {
+        emailSecreto += u;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "U") {
+        emailSecreto += U;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "v") {
+        emailSecreto += v;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "V") {
+        emailSecreto += V;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "w") {
+        emailSecreto += w;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "W") {
+        emailSecreto += W;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "x") {
+        emailSecreto += x;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "X") {
+        emailSecreto += X;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "y") {
+        emailSecreto += y;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "Y") {
+        emailSecreto += Y;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "z") {
+        emailSecreto += z;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "Z") {
+        emailSecreto += Z;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "0") {
+        emailSecreto += zero;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "1") {
+        emailSecreto += um;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "2") {
+        emailSecreto += dois;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "3") {
+        emailSecreto += tres;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "4") {
+        emailSecreto += quatro;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "5") {
+        emailSecreto += cinco;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "6") {
+        emailSecreto += seis;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "7") {
+        emailSecreto += sete;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "8") {
+        emailSecreto += oito;
+        console.log(senhaSecreta[index]);
+      } else if (dadoLogar[index] == "9") {
+        emailSecreto += nove;
+        console.log(senhaSecreta[index]);
+      }
+    }
+    emailCriptografado[0] = emailSecreto;
+    for (index = 0; index < palavra.length; index++) {
+
+      if (palavra[index] == "a") {
+        senhaSecreta += a;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "A") {
+        senhaSecreta += A;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "b") {
+        senhaSecreta += b;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "B") {
+        senhaSecreta += B;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "c") {
+        senhaSecreta += c;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "C") {
+        senhaSecreta += C;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "d") {
+        senhaSecreta += d;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "D") {
+        senhaSecreta += D;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "e") {
+        senhaSecreta += e;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "E") {
+        senhaSecreta += E;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "f") {
+        senhaSecreta += f;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "F") {
+        senhaSecreta += F;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "g") {
+        senhaSecreta += g;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "G") {
+        senhaSecreta += G;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "h") {
+        senhaSecreta += h;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "H") {
+        senhaSecreta += H;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "i") {
+        senhaSecreta += i;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "I") {
+        senhaSecreta += I;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "j") {
+        senhaSecreta += j;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "J") {
+        senhaSecreta += J;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "k") {
+        senhaSecreta += k;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "K") {
+        senhaSecreta += K;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "l") {
+        senhaSecreta += l;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "L") {
+        senhaSecreta += L;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "m") {
+        senhaSecreta += m;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "M") {
+        senhaSecreta += M;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "n") {
+        senhaSecreta += n;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "N") {
+        senhaSecreta += N;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "o") {
+        senhaSecreta += o;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "O") {
+        senhaSecreta += O;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "p") {
+        senhaSecreta += p;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "P") {
+        senhaSecreta += P;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "q") {
+        senhaSecreta += q;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "Q") {
+        senhaSecreta += Q;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "r") {
+        senhaSecreta += r;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "R") {
+        senhaSecreta += R;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "s") {
+        senhaSecreta += s;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "S") {
+        senhaSecreta += S;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "t") {
+        senhaSecreta += t;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "T") {
+        senhaSecreta += T;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "u") {
+        senhaSecreta += u;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "U") {
+        senhaSecreta += U;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "v") {
+        senhaSecreta += v;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "V") {
+        senhaSecreta += V;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "w") {
+        senhaSecreta += w;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "W") {
+        senhaSecreta += W;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "x") {
+        senhaSecreta += x;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "X") {
+        senhaSecreta += X;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "y") {
+        senhaSecreta += y;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "Y") {
+        senhaSecreta += Y;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "z") {
+        senhaSecreta += z;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "Z") {
+        senhaSecreta += Z;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "0") {
+        senhaSecreta += zero;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "1") {
+        senhaSecreta += um;
+        senhaSecretaConf += um;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "2") {
+        senhaSecreta += dois;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "3") {
+        senhaSecreta += tres;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "4") {
+        senhaSecreta += quatro;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "5") {
+        senhaSecreta += cinco;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "6") {
+        senhaSecreta += seis;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "7") {
+        senhaSecreta += sete;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "8") {
+        senhaSecreta += oito;
+        console.log(senhaSecreta[index]);
+      } else if (palavra[index] == "9") {
+        senhaSecreta += nove;
+        console.log(senhaSecreta[index]);
+      }
+    }
+    senhaCriptografada[0] = senhaSecreta;
+
+    var email = emailCriptografado[0];
+    var senhaCripto = senhaCriptografada[0];
+
+    try {
+      const data = await verificarCodigoSeguranca(codSegVar);
+
+      if (!data) {
+        mostrarErro("Código de segurança inválido.");
+        return false;
+      }
+
+
+
+      const response = await fetch("/usuario/cadastrar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          nomeServer: nomeVar,
+          emailServer: email,
+          codSegServer: codSegVar,
+          senhaServer: senhaCripto,
+          cargoServer: data.cargo,
+          idCompanhiaServer: data.idCompanhia
+        }),
+      });
+
+      if (response.ok) {
+        document.getElementById('div_aguardar').style.display = "none";
+        mostrarSucesso("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
+        setTimeout(() => {
+          cad_container.classList.remove('painel-direito-ativo');
+        }, 2000);
+      } else {
+        const erroTexto = await response.text();
+        throw new Error(erroTexto);
+      }
+    } catch (erro) {
+      console.log(`ERRO: ${erro}`);
+      mostrarErro(erro.message);
+    }
+  }
+
+  function mostrarErro(mensagem) {
+    document.getElementById('cardErro').style.display = "block";
+    document.getElementById('mensagem_erro').innerHTML = mensagem;
+    sumirMensagem();
+  }
+
+  function mostrarSucesso(mensagem) {
+    document.getElementById('cardErro').style.display = "block";
+    document.getElementById('mensagem_erro').style.color = "green";
+    document.getElementById('mensagem_erro').innerHTML = mensagem;
+  }
+
+  function sumirMensagem() {
+    setTimeout(() => {
+      document.getElementById('cardErro').style.display = "none";
+      document.getElementById('mensagem_erro').innerHTML = "";
+      document.getElementById('mensagem_erro').style.color = "red";
+    }, 5000);
+  }
+
+  async function verificarCodigoSeguranca(codSegVar) {
+    try {
+      const response = await fetch('/usuario/verificarCodigoSeguranca', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ codSeg: codSegVar }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log('Resposta do servidor:', data);
+        return data;
+      } else {
+        return null;
+      }
+    } catch (error) {
+      console.error('Erro ao verificar o código de segurança:', error);
+      return null;
+    }
+  }
+
+  async function entrar() {
+
+    aguardar();
+
+    var emailVar = document.getElementById("emailLogin_input").value;
+    var senhaVar = document.getElementById("senhaLogin_input").value;
+
+    if (emailVar == "" || senhaVar == "") {
+      mostrarErro("Preencha todos os campos!");
+      finalizarAguardar();
+      return false;
+    }
+
+      const senhaAntiga = [];
+      const senhaCriptografada = [];
+      const emailAntigo = [];
+      const emailCriptografado = [];
+
+      const A = "a0#";
+      const a = "a1#";
+      const B = "b0#";
+      const b = "b1#";
+      const C = "c0#";
+      const c = "c1#";
+      const D = "d0#";
+      const d = "d1#";
+      const E = "e0#";
+      const e = "e1#";
+      const F = "f0#";
+      const f = "f1#";
+      const G = "g0#";
+      const g = "g1#";
+      const H = "h0#";
+      const h = "h1#";
+      const I = "i0#";
+      const i = "i1#";
+      const J = "j0#";
+      const j = "j1#";
+      const K = "k0#";
+      const k = "k1#";
+      const L = "l0#";
+      const l = "l1#";
+      const M = "m0#";
+      const m = "m1#";
+      const N = "n0#";
+      const n = "n1#";
+      const O = "o0#";
+      const o = "o1#";
+      const P = "p0#";
+      const p = "p1#";
+      const Q = "q0#";
+      const q = "q1#";
+      const R = "r0#";
+      const r = "r1#";
+      const S = "s0#";
+      const s = "s1#";
+      const T = "t0#";
+      const t = "t1#";
+      const U = "u0#";
+      const u = "u1#";
+      const V = "v0#";
+      const v = "v1#";
+      const W = "w0#";
+      const w = "w1#";
+      const X = "x0#";
+      const x = "x1#";
+      const Y = "y0#";
+      const y = "y1#";
+      const Z = "z0#";
+      const z = "z1#";
+      const um = "01$";
+      const dois = "02$";
+      const tres = "03$";
+      const quatro = "04$";
+      const cinco = "05$";
+      const seis = "06$";
+      const sete = "07$";
+      const oito = "08$";
+      const nove = "09$";
+      const zero = "00$";
+      const arroba = "ar4";
+      const cifrao = "5if";
+      const porcentagem = "p0r";
+      const Ecomer = "ec4";
+
+      // criptar.push(senha);
+      senhaAntiga.push(senhaVar);
+      emailAntigo.push(emailVar);
+
+      var palavra = senhaAntiga[0];
+      var dadoLogar = emailAntigo[0];
+
+      var senhaSecreta = "";
+      var senhaSecretaConf = "";
+      var emailSecreto = "";
+
+      for (index = 0; index < dadoLogar.length; index++) {
+
+        if (dadoLogar[index] == "a") {
+          emailSecreto += a;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "A") {
+          emailSecreto += A;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "b") {
+          emailSecreto += b;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "B") {
+          emailSecreto += B;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "c") {
+          emailSecreto += c;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "C") {
+          emailSecreto += C;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "d") {
+          emailSecreto += d;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "D") {
+          emailSecreto += D;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "e") {
+          emailSecreto += e;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "E") {
+          emailSecreto += E;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "f") {
+          emailSecreto += f;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "F") {
+          emailSecreto += F;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "g") {
+          emailSecreto += g;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "G") {
+          emailSecreto += G;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "h") {
+          emailSecreto += h;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "H") {
+          emailSecreto += H;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "i") {
+          emailSecreto += i;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "I") {
+          emailSecreto += I;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "j") {
+          emailSecreto += j;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "J") {
+          emailSecreto += J;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "k") {
+          emailSecreto += k;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "K") {
+          emailSecreto += K;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "l") {
+          emailSecreto += l;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "L") {
+          emailSecreto += L;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "m") {
+          emailSecreto += m;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "M") {
+          emailSecreto += M;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "n") {
+          emailSecreto += n;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "N") {
+          emailSecreto += N;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "o") {
+          emailSecreto += o;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "O") {
+          emailSecreto += O;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "p") {
+          emailSecreto += p;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "P") {
+          emailSecreto += P;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "q") {
+          emailSecreto += q;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "Q") {
+          emailSecreto += Q;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "r") {
+          emailSecreto += r;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "R") {
+          emailSecreto += R;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "s") {
+          emailSecreto += s;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "S") {
+          emailSecreto += S;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "t") {
+          emailSecreto += t;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "T") {
+          emailSecreto += T;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "u") {
+          emailSecreto += u;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "U") {
+          emailSecreto += U;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "v") {
+          emailSecreto += v;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "V") {
+          emailSecreto += V;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "w") {
+          emailSecreto += w;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "W") {
+          emailSecreto += W;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "x") {
+          emailSecreto += x;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "X") {
+          emailSecreto += X;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "y") {
+          emailSecreto += y;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "Y") {
+          emailSecreto += Y;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "z") {
+          emailSecreto += z;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "Z") {
+          emailSecreto += Z;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "0") {
+          emailSecreto += zero;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "1") {
+          emailSecreto += um;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "2") {
+          emailSecreto += dois;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "3") {
+          emailSecreto += tres;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "4") {
+          emailSecreto += quatro;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "5") {
+          emailSecreto += cinco;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "6") {
+          emailSecreto += seis;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "7") {
+          emailSecreto += sete;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "8") {
+          emailSecreto += oito;
+          console.log(senhaSecreta[index]);
+        } else if (dadoLogar[index] == "9") {
+          emailSecreto += nove;
+          console.log(senhaSecreta[index]);
+        }
+      }
+      emailCriptografado[0] = emailSecreto;
+      for (index = 0; index < palavra.length; index++) {
+
+        if (palavra[index] == "a") {
+          senhaSecreta += a;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "A") {
+          senhaSecreta += A;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "b") {
+          senhaSecreta += b;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "B") {
+          senhaSecreta += B;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "c") {
+          senhaSecreta += c;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "C") {
+          senhaSecreta += C;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "d") {
+          senhaSecreta += d;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "D") {
+          senhaSecreta += D;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "e") {
+          senhaSecreta += e;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "E") {
+          senhaSecreta += E;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "f") {
+          senhaSecreta += f;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "F") {
+          senhaSecreta += F;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "g") {
+          senhaSecreta += g;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "G") {
+          senhaSecreta += G;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "h") {
+          senhaSecreta += h;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "H") {
+          senhaSecreta += H;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "i") {
+          senhaSecreta += i;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "I") {
+          senhaSecreta += I;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "j") {
+          senhaSecreta += j;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "J") {
+          senhaSecreta += J;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "k") {
+          senhaSecreta += k;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "K") {
+          senhaSecreta += K;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "l") {
+          senhaSecreta += l;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "L") {
+          senhaSecreta += L;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "m") {
+          senhaSecreta += m;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "M") {
+          senhaSecreta += M;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "n") {
+          senhaSecreta += n;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "N") {
+          senhaSecreta += N;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "o") {
+          senhaSecreta += o;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "O") {
+          senhaSecreta += O;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "p") {
+          senhaSecreta += p;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "P") {
+          senhaSecreta += P;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "q") {
+          senhaSecreta += q;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "Q") {
+          senhaSecreta += Q;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "r") {
+          senhaSecreta += r;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "R") {
+          senhaSecreta += R;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "s") {
+          senhaSecreta += s;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "S") {
+          senhaSecreta += S;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "t") {
+          senhaSecreta += t;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "T") {
+          senhaSecreta += T;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "u") {
+          senhaSecreta += u;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "U") {
+          senhaSecreta += U;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "v") {
+          senhaSecreta += v;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "V") {
+          senhaSecreta += V;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "w") {
+          senhaSecreta += w;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "W") {
+          senhaSecreta += W;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "x") {
+          senhaSecreta += x;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "X") {
+          senhaSecreta += X;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "y") {
+          senhaSecreta += y;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "Y") {
+          senhaSecreta += Y;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "z") {
+          senhaSecreta += z;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "Z") {
+          senhaSecreta += Z;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "0") {
+          senhaSecreta += zero;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "1") {
+          senhaSecreta += um;
+          senhaSecretaConf += um;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "2") {
+          senhaSecreta += dois;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "3") {
+          senhaSecreta += tres;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "4") {
+          senhaSecreta += quatro;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "5") {
+          senhaSecreta += cinco;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "6") {
+          senhaSecreta += seis;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "7") {
+          senhaSecreta += sete;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "8") {
+          senhaSecreta += oito;
+          console.log(senhaSecreta[index]);
+        } else if (palavra[index] == "9") {
+          senhaSecreta += nove;
+          console.log(senhaSecreta[index]);
+        }
+      }
+      senhaCriptografada[0] = senhaSecreta;
+
+      var emailCripto = emailCriptografado[0];
+      var senhaCripto = senhaCriptografada[0];
+
+
+      fetch("/usuario/autenticar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          emailServer: emailCripto,
+          senhaServer: senhaCripto,
+        }),
+      }).then(function (resposta) {
+
+        if (resposta.ok) {
+          console.log(resposta);
+
+          resposta.json().then(json => {
+            console.log(json);
+            console.log(JSON.stringify(json));
+            sessionStorage.ID_USUARIO = json.idFuncionario;
+            sessionStorage.EMAIL_USUARIO = json.email;
+            sessionStorage.NOME_USUARIO = json.nome;
+            sessionStorage.CARGO_USUARIO = json.cargo;
+            sessionStorage.FK_COMPANHIA = json.fkCompanhia;
+
+            setTimeout(function () {
+              if (json.cargo === "analista") {
+                window.location = "./dashboardAnalistaMetricas.html";
+              } else if (json.cargo === "gerente") {
+                window.location = "./cadastroTotens.html";
+              }
+            }, 1000);
+          });
+
+        } else {
+          console.log("Houve um erro ao tentar realizar o login!");
+
+          resposta.text().then(texto => {
+            console.error(texto);
+          });
+        }
+      }).catch(function (erro) {
+        console.log(erro);
+      })
+
+      return false;
+  }
+  
+
+
+</script>
