@@ -11,7 +11,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
-<body onload="listarTotens(), totemMaiorAlerta(), diaMaiorAlerta(), gerarGraficoFrequenciaAlertas(), gerarGraficoPassageirosPorMes()">
+<body
+    onload=" listarMeses(), gerarGraficoPassageirosPorMes()">
 
     <div class="conteudoPagina">
         <div class="boxLateral">
@@ -46,7 +47,7 @@
                 <div class="boxGeralKpiWebCrawler">
                     <div class="boxGeralKpi">
                         <div class="divSelect">
-                            <select id="listaMeses">
+                            <select id="listaMeses" onchange="diaMaiorAlerta(), totemMaiorAlerta(), listarTotens(), gerarGraficoFrequenciaAlertas()">
                                 <option value="" selected disabled>Selecione um Mês</option>
                             </select>
                         </div>
@@ -83,8 +84,8 @@
                             <div class="boxTituloGrafico">
                                 <span>QUANTIDADE DE PASSAGEIROS POR MÊS DO ANO</span>
                             </div>
-                            <div class="divGraficoPass">
-                                <canvas id="graficoPassageiros" width="1100" height="350"></canvas>
+                            <div class="divGraficoPass" id="graficoPassageiros">
+                                <!-- <canvas id="graficoPassageiros" width="1100" height="350"></canvas> -->
                             </div>
                         </div>
                     </div>
@@ -95,11 +96,11 @@
                         <div class="divTituloESelect">
                             <span>QUANTIDADE DE PASSAGEIROS POR MÊS DO ANO</span>
                             <select id="listaTotens">
-                                <option value="" selected disabled>Selecione um Totem</option>
+                                <option value="#" selected disabled>Selecione um Totem</option>
                             </select>
                         </div>
-                        <div class="divGrafFreqAlertas">
-                            <canvas id="graficoFrequenciaAlertas" width="1220" height="400"></canvas>
+                        <div class="divGrafFreqAlertas" id="graficoAlertas">
+                            <!-- <canvas id="graficoFrequenciaAlertas" width="1220" height="400"></canvas> -->
                         </div>
                     </div>
                     <div class="divAlertasXPassageiros">
@@ -124,7 +125,8 @@
 <script>
 
     const nomeUsuario = sessionStorage.getItem('NOME_USUARIO');
-    const fkCompanhia = sessionStorage.getItem('FK_COMPANHIA')
+    const fkCompanhia = sessionStorage.getItem('FK_COMPANHIA');
+
 
 
 
@@ -135,10 +137,12 @@
     }
 
 
+    // Fazer uma função pro onchange é a mesma coisa do fetch só que onde está a flCompanhia com o .value da lista
 
 
     function totemMaiorAlerta() {
-        fetch("/totens/totemMaiorAlerta", {
+        var mesSelecionado = listaMeses.value
+        fetch(`/alertas/totemMaiorAlerta/${fkCompanhia}/${mesSelecionado}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -161,7 +165,8 @@
     }
 
     function diaMaiorAlerta() {
-        fetch("/totens/diaMaiorAlerta", {
+        var mesSelecionado = listaMeses.value
+        fetch(`/alertas/diaMaiorAlerta/${fkCompanhia}/${mesSelecionado}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -170,7 +175,7 @@
             console.log("ESTOU NO THEN DO listar()!")
 
             if (resposta.ok) {
-                console.log("Função listar(): ")
+                console.log("Função dia com maior alerta(): ")
 
                 resposta.json().then(function (resposta) {
                     var dados = resposta[0];
@@ -186,20 +191,43 @@
 
 
     function listarTotens() {
-        listaTotens.innerHTML = "<option value='' selected disabled>Selecione um Totem</option>";
-        fetch(`/totens/listarTotens/${fkCompanhia}`, {
+        var mesSelecionado = listaMeses.value
+        fetch(`/alertas/listarTotens/${fkCompanhia}/${mesSelecionado}`, {
             method: "GET",
         })
             .then(function (resposta) {
                 return resposta.json();
 
             })
-            .then(function (totens) {
+            .then(function (alertas) {
                 const listaTotens = document.getElementById("listaTotens");
-                listaTotens.innerHTML = "";
 
-                totens.forEach((to) => {
-                    listaTotens.innerHTML += `<option value='${to.nome_totem}'>${to.nome_totem}</option>`;
+                alertas.forEach((to) => {
+                    listaTotens.innerHTML += `<option value='${to.idTotem}'>${to.nome_totem}</option>`;
+                    
+                });
+                
+            })
+            .catch(function (erro) {
+                console.log(`#ERRO: ${erro}`);
+            });
+            listaTotens.innerHTML = "";
+            listaTotens.innerHTML = `<option value="" selected disabled>Selecione um Totem</option>`;
+    }
+
+    function listarMeses() {
+        fetch(`/alertas/listarMeses/${fkCompanhia}`, {
+            method: "GET",
+        })
+            .then(function (resposta) {
+                return resposta.json();
+
+            })
+            .then(function (alertas) {
+                const listaMeses = document.getElementById("listaMeses");
+
+                alertas.forEach((to) => {
+                    listaMeses.innerHTML += `<option value='${to.numMes}'>${to.mes}</option>`;
                 });
             })
             .catch(function (erro) {
@@ -209,49 +237,6 @@
 
 
 
-
-
-
-    // Estrutura dos Gráficos
-    function gerarGraficoFrequenciaAlertas() {
-        // Dados fictícios para a frequência de alertas nos dias do mês
-        const diasDoMes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
-        const frequenciaAlertas = [5, 10, 7, 3, 8, 12, 4, 6, 9, 15, 14, 7, 5, 11, 8, 13, 10, 9, 12, 16, 14, 7, 9, 11, 15, 18, 13, 10, 11, 12];
-
-        // Configuração do gráfico
-        const ctx = document.getElementById('graficoFrequenciaAlertas').getContext('2d');
-        const graficoFrequenciaAlertas = new Chart(ctx, {
-            type: 'line', // Tipo de gráfico: linha
-            data: {
-                labels: diasDoMes, // Eixo X: dias do mês
-                datasets: [{
-                    label: 'Frequência de Alertas', // Rótulo do gráfico
-                    data: frequenciaAlertas, // Dados da frequência
-                    fill: false, // Não preencher a área abaixo da linha
-                    borderColor: '#18204b', // Cor da linha
-                    tension: 0.1 // Tensão da linha (curvatura)
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Dia do Mês'
-                        }
-                    },
-                    y: {
-                        title: {
-                            display: true,
-                            text: 'Frequência de Alertas'
-                        },
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-    }
 
 
 
@@ -310,41 +295,174 @@
     ];
     const passageirosMensais = [120, 150, 170, 140, 160, 180, 190, 200, 210, 220, 230, 240];
 
-    // Função para gerar o gráfico de passageiros por mês
+
+
+
     function gerarGraficoPassageirosPorMes() {
-        const ctx = document.getElementById('graficoPassageiros').getContext('2d');
-        const graficoPassageiros = new Chart(ctx, {
-            type: 'line', // Tipo de gráfico: linha
-            data: {
-                labels: meses, // Eixo X: meses do ano
-                datasets: [{
-                    label: 'Quantidade de Passageiros',
-                    data: passageirosMensais, // Dados da quantidade de passageiros
-                    fill: false, // Não preencher a área abaixo da linha
-                    borderColor: '#18204b', // Cor da linha
-                    tension: 0.1, // Tensão da linha (curvatura)
-                    borderWidth: 2
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Meses do Ano'
-                        }
-                    },
-                    y: {
-                        title: {
-                            display: true,
-                            text: 'Quantidade de Passageiros'
-                        },
-                        beginAtZero: true // Começar o eixo Y do zero
-                    }
-                }
+        document.getElementById("graficoPassageiros").innerHTML += `
+               
+               <canvas id="myChartCanvasGraficoPassageiros" width="1000" height="350"></canvas>`;
+
+        fetch(`/alertas/gerarGraficoPassageirosPorMes`
+        , { cache: 'no-store' }).
+        then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta;
+
+                    plotarGrafico(resposta);
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
             }
-        });
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    function plotarGrafico(resposta) {
+
+        console.log('iniciando plotagem do gráfico...');
+
+        // Criando estrutura para plotar gráfico - labels
+        let labels = [];
+
+        // Criando estrutura para plotar gráfico - dados
+        let dados = {
+            labels: labels,
+            datasets: [{
+                label: 'Mês',
+                data: [],
+                fill: false,
+                borderColor: '#18204b',
+                tension: 0.1
+            }]
+        };
+
+        console.log('----------------------------------------------')
+        console.log('Estes dados foram recebidos pela funcao "gerarGraficoPassageirosPorMes" e passados para "plotarGrafico":')
+        console.log(resposta)
+
+        // Inserindo valores recebidos em estrutura para plotar o gráfico
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            labels.push(registro.mesSigla);
+            dados.datasets[0].data.push(registro.passageirosAzul);
+        }
+
+        console.log('----------------------------------------------')
+        console.log('O gráfico será plotado com os respectivos valores:')
+        console.log('Labels:')
+        console.log(labels)
+        console.log('Dados:')
+        console.log(dados.datasets)
+        console.log('----------------------------------------------')
+
+        // Criando estrutura para plotar gráfico - config
+        const config = {
+            type: 'line',
+            data: dados,
+        };
+
+        // Adicionando gráfico criado em div na tela
+        let myChartPassageiros = new Chart(
+            document.getElementById(`myChartCanvasGraficoPassageiros`),
+            config
+        );
+    }
+
+
+
+
+    
+
+    function gerarGraficoFrequenciaAlertas() {
+        var mesSelecionado = listaMeses.value
+
+        document.getElementById("graficoAlertas").innerHTML = '';
+
+        document.getElementById("graficoAlertas").innerHTML += `
+               
+               <canvas id="myChartCanvasGraficoAlertas" width="1220" height="400"></canvas>`;
+
+        fetch(`/alertas/gerarGraficoFrequenciaAlertas/${fkCompanhia}/${mesSelecionado}`, 
+        { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta;
+
+                    
+                    plotarGraficoAlertas(resposta);
+                    
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+            
+    }
+
+    function plotarGraficoAlertas(resposta) {
+
+        console.log('iniciando plotagem do gráfico...');
+
+        // Criando estrutura para plotar gráfico - labels
+        let labels = [];
+
+        // Criando estrutura para plotar gráfico - dados
+        let dados = {
+            labels: labels,
+            datasets: [{
+                label: 'Dias do mês',
+                data: [],
+                fill: false,
+                borderColor: '#18204b',
+                tension: 0.1
+            }]
+        };
+
+        console.log('----------------------------------------------')
+        console.log('Estes dados foram recebidos pela funcao "gerarGraficoPassageirosPorMes" e passados para "plotarGrafico":')
+        console.log(resposta)
+
+        // Inserindo valores recebidos em estrutura para plotar o gráfico
+        
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            labels.push(registro.diaMes);
+            dados.datasets[0].data.push(registro.totalAlertas);
+        }
+        
+
+        console.log('----------------------------------------------')
+        console.log('O gráfico será plotado com os respectivos valores:')
+        console.log('Labels:')
+        console.log(labels)
+        console.log('Dados:')
+        console.log(dados.datasets)
+        console.log('----------------------------------------------')
+
+        // Criando estrutura para plotar gráfico - config
+        const config = {
+            type: 'line',
+            data: dados,
+        };
+
+        // Adicionando gráfico criado em div na tela
+        
+        let myChartAlertas = new Chart(
+            document.getElementById(`myChartCanvasGraficoAlertas`),
+            config
+        );
+        
     }
 
 
